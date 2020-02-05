@@ -3,7 +3,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[ -f .bash_colors ] && . .bash_colors
+[ -f "$HOME"/.bash_colors ] && . "$HOME"/.bash_colors
+[ -f "$HOME"/.bash_exports ] && . "$HOME"/.bash_exports
 
 export PATH=$HOME/bin:$PATH
 export MANPAGER=most
@@ -15,15 +16,22 @@ export HISTFILESIZE=1000
 export SHELL=/bin/bash
 export CDPATH='~'
 
-[ -f .bash_exports ] && . .bash_exports
-
-
 #PS1='[\u@\h \W]\$ '
 PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
 
 shopt -s cdspell
 
 #####   A L I A S   #####
+# system
+alias zzz='sudo zzz'
+alias qqq='sudo poweroff'
+alias fw='sudo iptables -nvL'
+alias fw_watch='watch -n 5 sudo iptables -nvL'
+alias ee='sudo nano $(find /etc/ -type f |fzy -l 15)'
+alias eee='clear && cd /etc && ls'
+alias sss='clear && cd /var/service/ && ls && sudo sv s /var/service/*'
+alias vsv='sudo vsv'
+
 # terminal
 alias ls='ls --color=auto'
 alias ll='ls -lh'
@@ -35,9 +43,6 @@ alias ....='cd ../../..'
 alias ~='cd ~'
 alias c='clear'
 alias _='sudo'
-alias eee='clear && cd /etc && ls'
-alias sss='clear && ls /var/service/ && sudo sv s /var/service/*'
-alias vsv='sudo vsv'
 
 # packet manager
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
@@ -51,35 +56,19 @@ alias yyi='echo -e "sudo xbps-install\n" && sudo xbps-install'
 alias yyc='echo -e "sudo xbps-remove -o\n" && sudo xbps-remove -o'
 alias yycc='echo -e "sudo xbps-remove -O\n" && sudo xbps-remove -O'
 
-# fff file-manager
-export FFF_FAV1=/etc
-export FFF_FAV2=/etc/sv
-export FFF_FAV3=/var/service
-export FFF_FAV6=~/.config/mimeapps.list
-export FFF_FAV7=~/.xinitrc
-export FFF_FAV8=~/.config/fish/config.fish
-export FFF_FAV9=~/.bashrc
-export FFF_KEY_EXECUTABLE="O"     # Toggle executable flag
-
 # other
 alias cat='bat --pager less'
-alias rr='ranger'
 alias e='nano $(find $HOME | fzy -l 15)'
-alias ee='sudo nano $(find /etc/ -type f |fzy -l 15)'
 alias vv='vim $(find $HOME | fzy -l 15)'
 alias v='vim'
 alias gg='glances'
 alias grep='grep --color'
-alias zzz='echo -e "sudo zzz\n" && sudo zzz'
-alias qqq='echo -e "sudo poweroff\n" && sudo poweroff'
 alias qmv='qmv -e vim'
 alias qcp='qcp -e vim'
 alias du='du -ach | sort -hr | most'
 alias mplayer='mplayer -af volnorm'
 alias wetter='curl -4 http://wttr.in/Eupen'
 alias yv='youtube-viewer --resolution=720p -C'
-alias fw='sudo iptables -nvL'
-alias fw_watch='watch -n 5 sudo iptables -nvL'
 alias n='dnote'
 alias f='sudo fd'
 alias wiki-='taizen --lang=en'
@@ -90,14 +79,10 @@ alias wiki-la='taizen --lang=la'
 #####   END ALIAS   #####
 
 
-
 #####   F U N C T I O N S   #####
-[ -f .bash_functions ] && . .bash_functions
-#[ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
-#[ -f /usr/share/doc/fzf/key-bindings.bash ] && . /usr/share/doc/fzf/key-bindings.bash
-#function xlocate { sudo xlocate $1 | cut -f1 | sort -u ; }
+[ -f "$HOME"/.bash_functions ] && . "$HOME"/.bash_functions
 
-uu() { udevil umount /dev/sd$1 ; }     # unmount usb devices
+uu() { udevil umount /dev/sd"$1" ; }     # unmount usb devices
 
 myip ()
 {
@@ -117,34 +102,23 @@ echo -e "REPO\tsudo xbps-query -Rs\n" && sudo xbps-query -Rs "$1"
 
 yyii ()
 {
-sudo xbps-install $(xbps-query -Rs '' | fzy -l 15 | awk '{ print $2}')
+sudo xbps-install "$(xbps-query -Rs '' | fzy -l 15 | awk '{ print $2}')"
 }
 
 yyrr ()
 {
-sudo xbps-remove $(xbps-query -s '' | fzy -l 15 | awk '{ print $2}')
+sudo xbps-remove "$(xbps-query -s '' | fzy -l 15 | awk '{ print $2}')"
 }
 
 down4me () { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g' ; }
-#del () { mkdir -p /tmp/.trash && mv "$@" /tmp/.trash ; }
 mkcd () {  mkdir -p -- "$*"; cd -- "$*" ; }
-lsgrep () { ls --color=auto | grep --color=auto "$*" ; }
 copy () { scp $@ void@192.168.1.12: ; }
 
-# fzf fuzzy-finder functions
-#fh () { eval $(history | fzf +s | sed 's/ *[0-9]* *//') ; }
-#bind '"\C-R":"fh\n"'
-
-# Run 'fff' with 'f' or whatever you decide to name the function.
-ff() 
-{
-    fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
-}
-        
 #####   END FUNCTIONS   #####
 
-# make LESS colourful
+############################################################
+
+### make LESS colourful
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;33m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -152,9 +126,6 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;42;30m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
-
-
-############################################################
 
 
 ### HSTR configuration - add this to ~/.bashrc
