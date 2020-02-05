@@ -1,0 +1,16 @@
+$include /etc/inputrc
+
+set completion-ignore-case On
+set colored-stats On
+set visible-stats On
+set show-all-if-ambiguous on
+set echo-control-characters off
+
+"\ep": '\C-e | most \015'
+"\ed": '\C-a "$(\C-e)"\C-a'
+"\es": '\C-asudo \C-e \015'
+"\e-": 'sudo !! \015'
+"\ef": 'fc \015'
+"\em": 'qmv \015'
+"\ec": 'qcp \015'
+

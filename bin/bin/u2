@@ -1,0 +1,12 @@
+#!/bin/env bash
+#
+choice=$(echo -e "
+PowerfulJRE
+UnterBlog
+KaiserFEGBonn
+wwwKenFMde
+jessetjuhhh" | dmenu)
+
+youtube-viewer --uv="$choice"
+
+

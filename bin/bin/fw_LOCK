@@ -1,0 +1,16 @@
+#!/bin/env bash
+#
+# turn firewall ON and block EVERYTHING
+# except "lo"
+
+sudo iptables -F
+sudo iptables -X
+
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT DROP
+sudo iptables -P FORWARD DROP
+
+notify-send -u normal ".\n   firewall blocks \n   EVERYTHING! \n."

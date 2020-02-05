@@ -1,0 +1,28 @@
+include /usr/share/nano/*
+set smooth
+set autoindent
+set morespace
+set tabsize 4
+set tabstospaces
+set nowrap
+#set softwrap
+set constantshow #display cursor position
+set suspend #allow nano to be suspended
+set nohelp 
+
+bind ^F whereis main
+bind ^N findnext main
+bind ^P findprevious main
+#bind ^C copytext main
+#bind ^V uncut main
+bind ^Space mark main
+bind ^U undo main
+bind ^R replace main
+bind ^R regexp search
+bind ^I insert main
+bind ^I flipexecute insert
+
+bind ^Q exit main
+bind ^S savefile main
+
+#set speller "hunspell -x -c"
