@@ -1,6 +1,6 @@
 setxkbmap de
 
-xset dpms 300
+xset dpms 600
 
 amixer set PCM 100%,100%   # max boost
  
@@ -23,6 +23,7 @@ while xsetroot -name "$(date +%a" "%d/%m/%g"   "%H:%M" ")"
   volumeicon &
   mount-devices.sh &
   wallpapershow.sh &
+  amixer set Master 30%
   sleep 1
   mimic "All systems online"
 } &

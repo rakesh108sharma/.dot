@@ -8,7 +8,7 @@ pgrep wallpapershow && pkill wallpapershow && printf  "killed diashow!\n...and s
  
 cd "$HOME"/.wallpaper >/dev/null 2>&1 || exit
 
-hsetroot -full "$(fd | fzy)"
+hsetroot -full "$(fd | dmenu -l 20)"
 
 cd - >/dev/null 2>&1 || exit
 

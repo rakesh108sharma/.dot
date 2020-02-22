@@ -116,10 +116,11 @@ map gd cd ~/downloads
 map gu cd /usr/share
 map gc cd ~/.config
 map gm cd /media
+map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
 
 map -b $vim ~/.bashrc
 map -x $vim ~/.xinitrc
 map -l $vim ~/.config/lf/lfrc
 map -p $vim ~/bin/prev
 map -m $vim ~/.config/mimeapps.list
-
+map -w $vim ~/.suckless/dwm/config.h

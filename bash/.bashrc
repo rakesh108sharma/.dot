@@ -145,4 +145,5 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 #export QT_SCALE_FACTOR=0.9
 
 ### starship prompt # must be the last entry in bashrc
+alias config='/bin/git --git-dir=/home/maya/.versuch --work-tree=/home/maya'
 eval "$(starship init bash)"
