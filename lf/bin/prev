@@ -7,7 +7,7 @@ case "$1" in
     *.rar) unrar l "$1";;
     *.7z) 7z l "$1";;
     *.pdf) pdftotext "$1" -;;
-    *.mp4|*.mp3) mediainfo "$1";;
+    *.mp4|*.mp3|*.mkv) mediainfo "$1";;
     *.jpg|*.png) source "$(ueberzug library)"
             ImageLayer 0< <(
               ImageLayer::add [identifier]="example0" [x]="0" [y]="0" [max_height]="40" [max_width]="40" [path]="$1"

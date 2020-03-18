@@ -1,6 +1,7 @@
 setxkbmap de
 
-xset dpms 600
+xset dpms 1800
+xset s 1200
 
 amixer set PCM 100%,100%   # max boost
  
@@ -14,12 +15,12 @@ while xsetroot -name "$(date +%a" "%d/%m/%g"   "%H:%M" ")"
     done &
 
 {
-  sleep 5
+  sleep 3
   xrandr --output HDMI-A-0 --mode 1280x720 &
-  sleep 5
+  sleep 4
   pavucontrol-qt &
   tilda -h -g ~/.config/tilda/config_0 &
-  sleep 5
+  sleep 3
   volumeicon &
   mount-devices.sh &
   wallpapershow.sh &

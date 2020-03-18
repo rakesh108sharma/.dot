@@ -23,7 +23,7 @@ shopt -s cdspell
 
 #####   A L I A S   #####
 # system
-alias zzz='sudo zzz'
+alias zzz='sudo /usr/bin/zzz'
 alias qqq='sudo poweroff'
 alias fw='sudo iptables -nvL'
 alias fw_watch='watch -n 5 sudo iptables -nvL'
@@ -46,6 +46,7 @@ alias _='sudo'
 
 # packet manager
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
+alias yyx='sudo xbps-install -uy xbps'
 #yys = function for searching packages
 #yyss = function fuzzy search for a package 
 alias yyr='echo -e "sudo xbps-remove\n" && sudo xbps-remove'

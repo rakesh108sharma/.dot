@@ -3,17 +3,32 @@
 # keeping things clean
 
 clear
-sudo xbps-install -Su
-sudo xbps-install -Su
+echo "UPDATING..."
+sleep 1
+sudo xbps-install -uy
+sudo xbps-install -Suy
+sudo xbps-install -Suy
 
-sudo xbps-remove -o
+clear
+echo "REMOVING orphans   AND   CLEARING cache..."
+sleep 1
+sudo xbps-remove -oy
 sudo xbps-remove -O
 
-rm -ri "$HOME"/.trash/*
+clear
+echo "CLEANING trash..."
+rm -r "$HOME"/.trash/*
 
+clear
+echo "REMOVING old kernels..."
+sleep 1
 sudo vkpurge rm all
 
+clear
+echo "UPDATING tldr..."
 tldr --update
 
+clear
+echo "TRIMMING..."
 sudo fstrim /
 

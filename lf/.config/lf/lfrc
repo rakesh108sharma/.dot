@@ -101,9 +101,13 @@ cmd zip ${{
 }}
 
 #################################
-set icons
 set previewer ~/bin/prev
 map i $~/bin/prev $f | most 
+
+set ratios 1:2
+set drawbox
+set icons
+set incsearch
 
 map . set hidden!
 map e $vim $f
@@ -117,6 +121,7 @@ map gu cd /usr/share
 map gc cd ~/.config
 map gm cd /media
 map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
+map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
 
 map -b $vim ~/.bashrc
 map -x $vim ~/.xinitrc
