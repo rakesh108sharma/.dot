@@ -15,9 +15,9 @@ while xsetroot -name "$(date +%a" "%d/%m/%g"   "%H:%M" ")"
     done &
 
 {
-  sleep 3
+  sleep 2
   xrandr --output HDMI-A-0 --mode 1280x720 &
-  sleep 4
+  sleep 3
   pavucontrol-qt &
   tilda -h -g ~/.config/tilda/config_0 &
   sleep 3
@@ -26,7 +26,11 @@ while xsetroot -name "$(date +%a" "%d/%m/%g"   "%H:%M" ")"
   wallpapershow.sh &
   amixer set Master 30%
   sleep 1
+  qterminal &
   mimic "All systems online"
+  chromium &
+  sleep 5
+  jupyter-notebook &
 } &
 
 exec dwm

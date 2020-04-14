@@ -14,11 +14,11 @@ echo "start diashow..."
   while true
   do
     cd "$HOME"/.wallpaper || exit
-    list="$(ls)"
+    wallpapers="$(ls)"
 
-    for x in $list
+    for wallpaper in $wallpapers
     do
-      hsetroot -full "$x"
+      hsetroot -full "$wallpaper"
       sleep 300
     done
   done

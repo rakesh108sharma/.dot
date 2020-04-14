@@ -38,6 +38,7 @@ map O $mimeopen --ask $f
 # text files and a file opener for the rest.
 cmd open ${{
     case $(file --mime-type $f -b) in
+        text/html) chromium $fx;;
         text/*) $EDITOR $fx;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
@@ -105,8 +106,8 @@ set previewer ~/bin/prev
 map i $~/bin/prev $f | most 
 
 set ratios 1:2
-set drawbox
-set icons
+set drawbox true
+set icons true
 set incsearch
 
 map . set hidden!

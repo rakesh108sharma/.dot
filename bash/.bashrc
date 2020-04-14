@@ -15,7 +15,165 @@ export HISTSIZE=1000
 export HISTFILESIZE=1000
 export SHELL=/bin/bash
 export CDPATH='~'
-
+export LF_ICONS="\
+di=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+*.c=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.java=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.md=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
+*.tar=:\
+*.tgz=:\
+*.arc=:\
+*.arj=:\
+*.taz=:\
+*.lha=:\
+*.lz4=:\
+*.lzh=:\
+*.lzma=:\
+*.tlz=:\
+*.txz=:\
+*.tzo=:\
+*.t7z=:\
+*.zip=:\
+*.z=:\
+*.dz=:\
+*.gz=:\
+*.lrz=:\
+*.lz=:\
+*.lzo=:\
+*.xz=:\
+*.zst=:\
+*.tzst=:\
+*.bz2=:\
+*.bz=:\
+*.tbz=:\
+*.tbz2=:\
+*.tz=:\
+*.deb=:\
+*.rpm=:\
+*.jar=:\
+*.war=:\
+*.ear=:\
+*.sar=:\
+*.rar=:\
+*.alz=:\
+*.ace=:\
+*.zoo=:\
+*.cpio=:\
+*.7z=:\
+*.rz=:\
+*.cab=:\
+*.wim=:\
+*.swm=:\
+*.dwm=:\
+*.esd=:\
+*.jpg=:\
+*.jpeg=:\
+*.mjpg=:\
+*.mjpeg=:\
+*.gif=:\
+*.bmp=:\
+*.pbm=:\
+*.pgm=:\
+*.ppm=:\
+*.tga=:\
+*.xbm=:\
+*.xpm=:\
+*.tif=:\
+*.tiff=:\
+*.png=:\
+*.svg=:\
+*.svgz=:\
+*.mng=:\
+*.pcx=:\
+*.mov=:\
+*.mpg=:\
+*.mpeg=:\
+*.m2v=:\
+*.mkv=:\
+*.webm=:\
+*.ogm=:\
+*.mp4=:\
+*.m4v=:\
+*.mp4v=:\
+*.vob=:\
+*.qt=:\
+*.nuv=:\
+*.wmv=:\
+*.asf=:\
+*.rm=:\
+*.rmvb=:\
+*.flc=:\
+*.avi=:\
+*.fli=:\
+*.flv=:\
+*.gl=:\
+*.dl=:\
+*.xcf=:\
+*.xwd=:\
+*.yuv=:\
+*.cgm=:\
+*.emf=:\
+*.ogv=:\
+*.ogx=:\
+*.aac=:\
+*.au=:\
+*.flac=:\
+*.m4a=:\
+*.mid=:\
+*.midi=:\
+*.mka=:\
+*.mp3=:\
+*.mpc=:\
+*.ogg=:\
+*.ra=:\
+*.wav=:\
+*.oga=:\
+*.opus=:\
+*.spx=:\
+*.xspf=:\
+*.pdf=:\
+*.nix=:\
+"
+    
 #PS1='[\u@\h \W]\$ '
 PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
 
@@ -24,7 +182,7 @@ shopt -s cdspell
 #####   A L I A S   #####
 # system
 alias zzz='sudo /usr/bin/zzz'
-alias qqq='sudo poweroff'
+#alias qqq='sudo poweroff'
 alias fw='sudo iptables -nvL'
 alias fw_watch='watch -n 5 sudo iptables -nvL'
 alias ee='sudo nano $(find /etc/ -type f |fzy -l 15)'
@@ -145,6 +303,22 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 ### END HSTR
 #export QT_SCALE_FACTOR=0.9
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/maya/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/maya/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/maya/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/maya/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 ### starship prompt # must be the last entry in bashrc
-alias config='/bin/git --git-dir=/home/maya/.versuch --work-tree=/home/maya'
-eval "$(starship init bash)"
+#alias config='/bin/git --git-dir=/home/maya/.versuch --work-tree=/home/maya'
+#eval "$(starship init bash)"
