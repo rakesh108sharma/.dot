@@ -125,8 +125,9 @@ map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ 
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
 
 map -b $vim ~/.bashrc
-map -x $vim ~/.xinitrc
+map -x $vim -O2 ~/bin/autostart.sh ~/.xinitrc
 map -l $vim ~/.config/lf/lfrc
 map -p $vim ~/bin/prev
 map -m $vim ~/.config/mimeapps.list
 map -w $vim ~/.suckless/dwm/config.h
+map -q $vim ~/.config/qtile/config.py

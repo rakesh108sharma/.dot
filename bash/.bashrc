@@ -6,7 +6,7 @@
 [ -f "$HOME"/.bash_colors ] && . "$HOME"/.bash_colors
 [ -f "$HOME"/.bash_exports ] && . "$HOME"/.bash_exports
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER=most
 export PAGER=most
 export EDITOR=nano
@@ -225,6 +225,7 @@ alias grep='grep --color'
 alias qmv='qmv -e vim'
 alias qcp='qcp -e vim'
 alias du='du -ach | sort -hr | most'
+alias df='df -h | grep /dev/sd | sort -k 1'
 alias mplayer='mplayer -af volnorm'
 alias wetter='curl -4 http://wttr.in/Eupen'
 alias yv='youtube-viewer --resolution=720p -C'
@@ -261,7 +262,7 @@ echo -e "REPO\tsudo xbps-query -Rs\n" && sudo xbps-query -Rs "$1"
 
 yyii ()
 {
-sudo xbps-install "$(xbps-query -Rs '' | fzy -l 15 | awk '{ print $2}')"
+sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
 }
 
 yyrr ()
@@ -269,9 +270,30 @@ yyrr ()
 sudo xbps-remove "$(xbps-query -s '' | fzy -l 15 | awk '{ print $2}')"
 }
 
+kernel ()
+{
+    clear
+    uname -a
+    echo
+    ls /boot/v*
+    echo
+    vkpurge list
+}
+
+# in order for 'which' to find aliases and functions
+which ()
+{
+  (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
+export -f which
+
+
+
 down4me () { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g' ; }
 mkcd () {  mkdir -p -- "$*"; cd -- "$*" ; }
 copy () { scp $@ void@192.168.1.12: ; }
+
+
 
 #####   END FUNCTIONS   #####
 

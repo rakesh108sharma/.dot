@@ -68,14 +68,21 @@ if has("gui_running")
 	set guitablabel=%M\ %t
 endif
 
+" find your cursor with highlight / grey dark-light 232-255
+set cursorline
+set cursorcolumn
+highlight Cursorline ctermbg=238 cterm=bold guibg=#2b2b2b
+highlight CursorColumn ctermbg=238 cterm=bold guibg=#2b2b2b
+
 " Key Maps
 nnoremap ,, :
 inoremap ,, <ESC>
 vnoremap ,, <ESC>
+inoremap ,,, <ESC>:
 let mapleader = ","
  
 nnoremap <leader>q :q<CR>   " normal mode quit
-
+nnoremap <leader>w :w<CR>
 inoremap ,,w <ESC>:w<CR>    " insert mode write 
 inoremap ,,ww <ESC>:wq<CR>  " insert mode write & quit 
 
@@ -92,6 +99,9 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 cnoremap <C-K> <C-U>
 
+" undotree
+nnoremap <leader>u :UndotreeShow<CR>:wincmd w<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -104,9 +114,48 @@ endif
 call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'tomasr/molokai'
-
+    Plug 'vimwiki/vimwiki'
+    Plug 'ptzz/lf.vim'
+    Plug 'junegunn/goyo.vim'
+    "Plug 'valloric/youcompleteme'
+    Plug 'vim-utils/vim-man'
+    Plug 'mbbill/undotree'
+    Plug 'dense-analysis/ale'
 call plug#end()
 
+
+let g:vimwiki_list = [
+            \{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}, 
+            \{'path': '~/vimwiki/python/', 'syntax': 'markdown', 'ext': '.md'},
+            \{'path': '~/vimwiki/linux/', 'syntax': 'markdown', 'ext': '.md'},
+            \]
+
+let g:ale_linters = { 'python': ['flake8']}
+let g:ale_fixers = { 'python': ['black']}
+let g:ale_fix_on_save = 1
+
+" BUFFERS (Tabs)
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>bo :enew<cr>
+
+" Move to the next buffer
+nmap <leader>bn :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>bp :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " HELPER functions
