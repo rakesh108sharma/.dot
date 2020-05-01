@@ -1,0 +1,21 @@
+#!/bin/env bash
+#
+# my poweroff
+
+amixer set Master 25%
+
+mimic "system halt!"
+
+jupyter-notebook stop >/dev/null 2>&1
+
+clear
+
+vnstat
+
+sleep 4
+
+
+sudo poweroff
+
+ 
+
