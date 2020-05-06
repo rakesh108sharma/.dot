@@ -30,7 +30,7 @@ run volumeicon &
 run chromium http://192.168.1.22:8080 &
 
 sleep 2
-amixer set Master %
+amixer set Master 20%
 run wallpapershow.sh &
 run mount-devices.sh &
 

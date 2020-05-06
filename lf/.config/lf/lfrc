@@ -123,6 +123,7 @@ map gc cd ~/.config
 map gm cd /media
 map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
+map ga cd "/media/sdX1-300G/home/void/M U S I C"
 
 map -b $vim ~/.bashrc
 map -x $vim -O2 ~/bin/autostart.sh ~/.xinitrc

@@ -75,23 +75,24 @@ highlight Cursorline ctermbg=238 cterm=bold guibg=#2b2b2b
 highlight CursorColumn ctermbg=238 cterm=bold guibg=#2b2b2b
 
 " Key Maps
-nnoremap ,, :
-inoremap ,, <ESC>
-vnoremap ,, <ESC>
-inoremap ,,, <ESC>:
-let mapleader = ","
+nnoremap ää :
+nnoremap <leader><leader> :
+inoremap ää <ESC>
+vnoremap ää <ESC>
+inoremap äää <ESC>:
+let mapleader = " "
  
 nnoremap <leader>q :q<CR>   " normal mode quit
 nnoremap <leader>w :w<CR>
-inoremap ,,w <ESC>:w<CR>    " insert mode write 
-inoremap ,,ww <ESC>:wq<CR>  " insert mode write & quit 
+inoremap äw <ESC>:w<CR>    " insert mode write 
+inoremap äq <ESC>:wq<CR>  " insert mode write & quit 
 
 " fast editing AND reloading of vimrc configs
 map <leader>e :e! ~/.vimrc<CR>
 autocmd! bufwritepost ~/.vimrc source ~/.vimrc
 
 cno <leader>h e ~/
-cno <leader>. e ./
+cno <leader>. e ./<CR>
 cno <leader>c e <C-\>eCurrentFileDir("e")<CR>
 
 " bash like keys for the command line
