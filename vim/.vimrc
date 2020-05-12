@@ -9,6 +9,13 @@ set spelllang=en,de     " check spelling
 set spellsuggest=10     " spell checker: number of suggestions
 set updatetime=3000     " wait #milliseconds before saving swap
 set undolevels=200  
+set lazyredraw          " redraw only when we need to
+
+" no need for swap or backup since I use 'undodir'
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
 
 filetype plugin on      " load syntax for different file types
 filetype indent on      " load indent for different file types
@@ -20,16 +27,19 @@ set ignorecase
 set smartcase           " ignore case if search contains majuscules
 set hlsearch            " highlight all matches of search
 set incsearch           " enable incremental search
+
 set expandtab           " transform tab into spaces
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4       " number of spaces in tab when editing
 set ai                  "auto indent
 set si                  "smart indent
+
 set textwidth=80        " hard wrap at this column
 set wrap                "wrap lines
 set magic               " for regular expressions turn magic on
-set showmatch
+set showmatch           " highlight matching [{()}]
 set mat=2
 set noerrorbells
 set visualbell
@@ -53,12 +63,6 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-	colorscheme desert
-catch
-endtry
-
-set background=dark
 
 " set extra GUI options
 if has("gui_running")
@@ -100,8 +104,6 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 cnoremap <C-K> <C-U>
 
-" undotree
-nnoremap <leader>u :UndotreeShow<CR>:wincmd w<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
@@ -114,16 +116,45 @@ endif
 
 call plug#begin()
     Plug 'vim-airline/vim-airline'
-    Plug 'tomasr/molokai'
+    "Plug 'tomasr/molokai'
+    Plug 'morhetz/gruvbox'
     Plug 'vimwiki/vimwiki'
     Plug 'ptzz/lf.vim'
     Plug 'junegunn/goyo.vim'
-    "Plug 'valloric/youcompleteme'
+    Plug 'valloric/youcompleteme'
     Plug 'vim-utils/vim-man'
     Plug 'mbbill/undotree'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
 call plug#end()
 
+"colorscheme gruvbox
+try
+	colorscheme gruvbox
+catch
+endtry
+set background=dark
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_use_caching = 10
+let g:ctrlp_clear_cache_on_exit = 0
+
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
+
+" undotree
+nnoremap <leader>u :UndotreeShow<CR>:wincmd w<CR>
+
+"youcompleteme
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 
 let g:vimwiki_list = [
             \{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}, 

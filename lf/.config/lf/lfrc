@@ -111,7 +111,9 @@ set icons true
 set incsearch
 
 map . set hidden!
-map e $vim $f
+
+# 'v' must be a link to 'vim-huge' in ~/bin
+map e $v $f
 
 map gt cd ~/.trash
 map ge cd /etc
@@ -125,10 +127,10 @@ map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ 
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
 map ga cd "/media/sdX1-300G/home/void/M U S I C"
 
-map -b $vim ~/.bashrc
-map -x $vim -O2 ~/bin/autostart.sh ~/.xinitrc
-map -l $vim ~/.config/lf/lfrc
-map -p $vim ~/bin/prev
-map -m $vim ~/.config/mimeapps.list
-map -w $vim ~/.suckless/dwm/config.h
-map -q $vim ~/.config/qtile/config.py
+map -b $v ~/.bashrc
+map -x $v ~/bin/autostart.sh ~/.xinitrc
+map -l $v ~/.config/lf/lfrc
+map -p $v ~/bin/prev
+map -m $v ~/.config/mimeapps.list
+map -w $v ~/.suckless/dwm/config.h
+map -q $v ~/.config/qtile/config.py

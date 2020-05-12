@@ -15,6 +15,7 @@ export HISTSIZE=1000
 export HISTFILESIZE=1000
 export SHELL=/bin/bash
 export CDPATH='~'
+export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 export LF_ICONS="\
 di=:\
 fi=:\
@@ -219,7 +220,7 @@ alias yycc='echo -e "sudo xbps-remove -O\n" && sudo xbps-remove -O'
 alias cat='bat --pager less'
 alias e='nano $(find $HOME | fzy -l 15)'
 alias vv='vim $(find $HOME | fzy -l 15)'
-alias v='vim'
+alias v='vim-huge'
 alias gg='glances'
 alias grep='grep --color'
 alias qmv='qmv -e vim'
@@ -287,12 +288,17 @@ which ()
 }
 export -f which
 
-
+run ()
+{
+  if ! pgrep "$1"
+  then
+    "$@"&
+  fi
+}
 
 down4me () { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g' ; }
 mkcd () {  mkdir -p -- "$*"; cd -- "$*" ; }
-copy () { scp $@ void@192.168.1.12: ; }
-
+copy () { scp "$@" void@192.168.1.12: ; }
 
 
 #####   END FUNCTIONS   #####

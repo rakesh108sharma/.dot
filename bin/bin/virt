@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+#  start/stops all daemons for virt-manager
+#  takes care of dnsmasq (doesn't work well together with virt-manager)
+#  after stopping makes sure to delete all virtual net-interfaces
+#  
+#  conda has to be deactivated in order for virt-manager to start
+#
+
+
+run ()
+{
+    sudo vsv "$do" libvirtd
+    sudo vsv "$do" virtlockd
+    sudo vsv "$do" virtlogd
+}
+
+##### BEGIN
+
+case "$1"  in
+    "start") do="restart"
+        sudo vsv stop dnsmasq
+        run
+        echo "make sure to start the networks in virt-manager manually!"
+        ;;
+    "stop") do="stop"
+        run
+        for interface in $(ip link show | grep vir | cut -d':' -f2)
+        do 
+            sudo ip link delete "$interface"
+        done
+        sudo vsv restart dnsmasq
+        ;;
+    *) echo "USE: $0 start|stop"
+        exit 1
+        ;;
+esac
+
+
+sudo vsv
+ip link show
+
+
+exit 0
+
+##### END
