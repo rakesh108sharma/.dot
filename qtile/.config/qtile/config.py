@@ -83,8 +83,8 @@ keys = [
     Key([mod], "f", lazy.window.toggle_floating()),
     # Toggle "monocle" mode (fullscreen)
     Key([mod], "m", lazy.window.toggle_fullscreen()),
-    Key([mod, "mod1"], "h", lazy.spawn("urxvtc -e htop")),
-    Key([mod, "mod1"], "f", lazy.spawn("urxvtc -e lf")),
+    Key([mod, "mod1"], "h", lazy.spawn("st -e htop")),
+    Key([mod, "mod1"], "f", lazy.spawn("st -e lf")),
     # Key('M-<Up>', lazy.spawn("my-menu.sh")),
 ]
 

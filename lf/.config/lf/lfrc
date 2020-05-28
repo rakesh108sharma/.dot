@@ -134,3 +134,4 @@ map -p $v ~/bin/prev
 map -m $v ~/.config/mimeapps.list
 map -w $v ~/.suckless/dwm/config.h
 map -q $v ~/.config/qtile/config.py
+map -r $sudo nano /etc/resolv.conf 

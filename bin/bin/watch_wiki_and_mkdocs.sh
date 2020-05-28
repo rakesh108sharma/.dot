@@ -9,10 +9,8 @@
 
 while :
 do 
-    inotifywait -q -q -r -e create -e delete -e move -e modify ~/wiki/my_wiki/docs
-    sleep 5 
     cd ~/wiki/my_wiki/
-    ~/anaconda3/bin/mkdocs build
+    fd . docs/* | entr -nr ~/anaconda3/bin/mkdocs build 
     notify-send "wiki UPDATED"
     sleep 5
 done
