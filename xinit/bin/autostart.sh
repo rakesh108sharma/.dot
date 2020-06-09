@@ -24,7 +24,7 @@ run pavucontrol-qt &
 #xrdb .Xresources &        # nicht wirklich nötig
 #run urxvtd -q -o -f       # nicht wirklich nötig
 run picom -b & 
-qterminal &
+qterminal -e system.sh &
 run darkhttpd ~/wiki/my_wiki/site/ --addr 192.168.1.22 --daemon
 
 sleep 2

@@ -1,11 +1,12 @@
 # .bashrc
-
+#
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 [ -f "$HOME"/.bash_colors ] && . "$HOME"/.bash_colors
 [ -f "$HOME"/.bash_exports ] && . "$HOME"/.bash_exports
 
+umask 027
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER=most
 export PAGER=most
@@ -15,7 +16,7 @@ export HISTSIZE=1000
 export HISTFILESIZE=1000
 export SHELL=/bin/bash
 export CDPATH='~'
-export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
+#export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 export LF_ICONS="\
 di=:\
 fi=:\
@@ -185,8 +186,8 @@ shopt -s cdspell
 # system
 alias zzz='sudo /usr/bin/zzz'
 #alias qqq='sudo poweroff'
-alias fw='sudo iptables -nvL'
-alias fw_watch='watch -n 5 sudo iptables -nvL'
+#alias fw='sudo iptables -nvL'
+alias fwwatch='watch -n 5 sudo iptables -nvL'
 alias ee='sudo nano $(find /etc/ -type f |fzy -l 15)'
 alias eee='clear && cd /etc && ls'
 alias sss='clear && cd /var/service/ && ls && sudo sv s /var/service/*'

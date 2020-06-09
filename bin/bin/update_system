@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# !! CRONTAB !!
+# update system automatically
+
+export DISPLAY=:0.0 
+
+sudo xbps-install -Suy
+notify-send "updating..."
+#dunstify "hello"
