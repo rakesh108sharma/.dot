@@ -24,12 +24,13 @@ run pavucontrol-qt &
 #xrdb .Xresources &        # nicht wirklich nötig
 #run urxvtd -q -o -f       # nicht wirklich nötig
 run picom -b & 
-qterminal -e system.sh &
+qterminal &
 run darkhttpd ~/wiki/my_wiki/site/ --addr 192.168.1.22 --daemon
 
 sleep 2
 run volumeicon &          # könnte direkt in qtile ersetzt werden
 run chromium http://192.168.1.22:8080 &
+st -e system.sh &
 
 sleep 2
 amixer set Master 20%
