@@ -66,7 +66,8 @@ cmd trash %set -f; mv $fx ~/.trash
 
 # use '<delete>' key for either 'trash' or 'delete' command
 map <delete> trash
-map D empty-trash
+#map D empty-trash 
+map D delete
 # map <delete> delete
 
 # extract the current file with the right command
@@ -115,6 +116,7 @@ map . set hidden!
 # 'v' must be a link to 'vim-huge' in ~/bin
 map e $v $f
 
+# CD-section
 map gt cd ~/.trash
 map ge cd /etc
 map gs cd /var/service
@@ -127,6 +129,7 @@ map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ 
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
 map ga cd "/media/sdX1-300G/home/void/M U S I C"
 
+# CONFIG-section
 map -b $v ~/.bashrc
 map -x $v ~/bin/autostart.sh ~/.xinitrc
 map -l $v ~/.config/lf/lfrc
@@ -135,3 +138,10 @@ map -m $v ~/.config/mimeapps.list
 map -w $v ~/.suckless/dwm/config.h
 map -q $v ~/.config/qtile/config.py
 map -r $sudo nano /etc/resolv.conf 
+
+# DIVERS
+cmd dragon %dragon -a -x $fx
+cmd dragon-individual %dragon $fx 
+map ++ dragon
+map +i dragon-individual
+

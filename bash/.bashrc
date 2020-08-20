@@ -12,8 +12,8 @@ export MANPAGER=most
 export PAGER=most
 export EDITOR=nano
 export BROWSER=chromium
-export HISTSIZE=1000
-export HISTFILESIZE=1000
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 export SHELL=/bin/bash
 export CDPATH='~'
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
@@ -177,8 +177,8 @@ ex=:\
 "
     
 #PS1='[\u@\h \W]\$ '
-#PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
-PS1='$(slcp $COLUMNS $?)'
+PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
+#PS1='$(slcp $COLUMNS $?)'
 
 shopt -s cdspell
 
@@ -188,16 +188,17 @@ alias zzz='sudo /usr/bin/zzz'
 #alias qqq='sudo poweroff'
 #alias fw='sudo iptables -nvL'
 alias fwwatch='watch -n 5 sudo iptables -nvL'
-alias ee='sudo nano $(find /etc/ -type f |fzy -l 15)'
+alias ee='sudo nano $(sudo find /etc/ -type f |fzf)'
 alias eee='clear && cd /etc && ls'
 alias sss='clear && cd /var/service/ && ls && sudo sv s /var/service/*'
 alias vsv='sudo vsv'
-
+alias doas='doas --'
 # terminal
-alias ls='ls --color=auto'
-alias ll='ls -lh'
-alias la='ls -a'
-alias l='exa -l'
+alias ls='exa --color=always --group-directories-first'
+alias ll='exa -l --color=always --group-directories-first'
+alias la='exa -a --color=always --group-directories-first'
+alias lt='exa -aT --color=always --group-directories-first'
+alias l.='exa -a | egrep "^\."'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -220,18 +221,23 @@ alias yycc='echo -e "sudo xbps-remove -O\n" && sudo xbps-remove -O'
 
 # other
 alias cat='bat --pager less'
-alias e='nano $(find $HOME | fzy -l 15)'
-alias vv='vim $(find $HOME | fzy -l 15)'
-alias v='vim-huge'
+alias e='nano $(fd . $HOME -H -E anaconda3/ | fzf)'
+alias v='vim $(fd . $HOME -H -E anaconda3/ | fzf)'
+alias vv='vim-huge'
 alias gg='glances'
-alias grep='grep --color'
+alias nn='newsboat'
+alias pp='castero'
+alias rr='curseradio'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias qmv='qmv -e vim'
 alias qcp='qcp -e vim'
 alias du='du -ach | sort -hr | most'
 alias df='df -h | grep /dev/sd | sort -k 1'
 alias mplayer='mplayer -af volnorm'
 alias wetter='curl -4 http://wttr.in/Eupen'
-alias yv='youtube-viewer --resolution=720p -C'
+#alias yv='youtube-viewer --resolution=720p -C'
 alias n='dnote'
 alias f='sudo fd'
 alias wiki-='taizen --lang=en'
@@ -239,6 +245,24 @@ alias wiki-de='taizen --lang=de'
 alias wiki-es='taizen --lang=es'
 alias wiki-fr='taizen --lang=fr'
 alias wiki-la='taizen --lang=la'
+
+# taskwarrior
+alias t='clear; task due.not:someday'
+alias tls='task ls due.not:someday'
+alias tl='task list due.not:someday'
+alias tla='clear; task all'
+alias tb='task minimal +book due.not:someday'
+alias tbd='task minimal waiting +bd'
+alias ts='task ls due:someday'
+alias ta='task add'
+alias tm='task $1 mod'
+alias te="task $1 edit"
+tr() {
+task "$1" mod "recur:$2"
+}
+tbirthdate() {
+task add "$1 Geburtstag due:$2" until:due+1w wait:due-1m
+}
 #####   END ALIAS   #####
 
 
@@ -302,6 +326,29 @@ down4me () { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just yo
 mkcd () {  mkdir -p -- "$*"; cd -- "$*" ; }
 copy () { scp "$@" void@192.168.1.12: ; }
 
+ex ()
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *tar.bz2)   tar xjf $1     ;;
+            *tar.gz)    tar xzf $1     ;;
+            *.bz2)      bunzip2 $1     ;;
+            *.rar)      unrar $1       ;;
+            *.gz)       gunzip $1      ;;
+            *.tar)      tar xf $1      ;;
+            *.tbz2)     tar xjf $1     ;;
+            *.tgz)      tar xzf $1     ;;
+            *.zip)      unzip $1       ;;
+            *.Z)        uncompress $1  ;;
+            *.7z)       7z x $1        ;;
+            *.deb)      ar x $1        ;;
+            *.tar.xz)   tar xf $1      ;;
+            *.tar.zst)  unzstd $1      ;;
+            *)          echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else "'$1' is not a valid file"
+    fi
+}
 
 #####   END FUNCTIONS   #####
 
@@ -325,7 +372,7 @@ export HISTCONTROL=ignorespace   # leading space hides commands from history
 export HISTFILESIZE=10000        # increase history file size (default is 500)
 export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
 # ensure synchronization between Bash memory and history file
-#export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 # if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
@@ -335,6 +382,3 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 
 
 
-### starship prompt # must be the last entry in bashrc
-#alias config='/bin/git --git-dir=/home/maya/.versuch --work-tree=/home/maya'
-#eval "$(starship init bash)"

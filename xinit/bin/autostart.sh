@@ -15,8 +15,8 @@ sleep 2
 
 setxkbmap de
 
-xset dpms 1800
-xset s 1200
+xset -dpms                 # standby - suspend -  off
+xset s off                 # screensaver
 
 amixer set PCM 100%,100%   # max boost
 

@@ -15,3 +15,5 @@ set echo-control-characters off
 "\ec": 'qcp \015'
 "\el": 'lf \015'
 "\ey": 'lf ~/scripting/learn_PYTHON \015'
+
+
