@@ -10,20 +10,20 @@
 ##### BEGIN
 
 [ -e /var/service/"$1" ] \
-&& echo "\tdaemon $1 already exists\n" \
-&& sudo vsv status "$1" \
-&& exit
+  && echo "\tdaemon $1 already exists\n" \
+  && sudo vsv status "$1" \
+  && exit
 
 [ ! -e /etc/sv/"$1" ] \
-&& echo "\tcould not find daemon $1 in /etc/sv/\n" \
-&& ls /etc/sv/ \
-&& exit
+  && echo "\tcould not find daemon $1 in /etc/sv/\n" \
+  && ls /etc/sv/ \
+  && exit
 
 
 sudo ln -s /etc/sv/"$1" /var/service \
-&& sleep 5 \
-&& sudo vsv status "$1" \
-|| echo "ERROR: could NOT install $1"
+  && sleep 5 \
+  && sudo vsv status "$1" \
+  || echo "ERROR: could NOT install $1"
 
 exit 0
 

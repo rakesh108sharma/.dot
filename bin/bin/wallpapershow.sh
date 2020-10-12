@@ -1,5 +1,6 @@
 #!/bin/dash
 #
+# ! autostart.sh !
 # sets the wallpaper diashow
 
 # IF the diashow is already running THEN exit

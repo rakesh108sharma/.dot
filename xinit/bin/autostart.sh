@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# wird durch .xinitrc gestartet
-#
+# !! wird durch .xinitrc gestartet !!
+# do all "wanted" things at system start
 
 run () {
     if ! pgrep "$1" ;
@@ -24,7 +24,8 @@ run pavucontrol-qt &
 #xrdb .Xresources &        # nicht wirklich nötig
 #run urxvtd -q -o -f       # nicht wirklich nötig
 run picom -b & 
-qterminal &
+#qterminal &
+st &
 run darkhttpd ~/wiki/my_wiki/site/ --addr 192.168.1.22 --daemon
 
 sleep 2
@@ -37,6 +38,7 @@ amixer set Master 20%
 run wallpapershow.sh &
 run mount-devices.sh &
 run tldr --update &
+xbps-query -Rs '' > "$HOME/voidpackages" &
 
 sleep 1
 mimic -t "All systems online"

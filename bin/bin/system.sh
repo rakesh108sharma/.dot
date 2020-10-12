@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+# ! autostart.sh !
 # quick and dirty system check for:
 #    - daemons
 #    - jails

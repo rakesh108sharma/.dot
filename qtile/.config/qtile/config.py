@@ -86,6 +86,7 @@ keys = [
     Key([mod, "mod1"], "h", lazy.spawn("st -e htop")),
     Key([mod, "mod1"], "f", lazy.spawn("st -e lf")),
     # Key('M-<Up>', lazy.spawn("my-menu.sh")),
+    Key([], "Print", lazy.spawn("scrot")),
 ]
 
 ###############

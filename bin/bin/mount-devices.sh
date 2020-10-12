@@ -1,6 +1,6 @@
 #!/bin/dash
 #
-#
+# ! autostart.sh !
 
 # deletes all directory entries of unmounted devices
 sudo udevil clean

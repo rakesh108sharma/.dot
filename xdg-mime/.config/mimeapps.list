@@ -1,4 +1,6 @@
 [Default Applications]
+text/plain=vim.desktop
+text/x-shellscript=vim.desktop
 audio/webm=mpv.desktop;
 audio/x-matroska=mpv.desktop;
 audio/mpeg=mpv.desktop;

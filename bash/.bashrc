@@ -1,4 +1,4 @@
-# .bashrc
+## .bashrc
 #
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -16,165 +16,9 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export SHELL=/bin/bash
 export CDPATH='~'
+export MINIO_ACCESS_KEY=maya
+export MINIO_SECRET_KEY=alex67ander
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
-export LF_ICONS="\
-di=:\
-fi=:\
-ln=:\
-or=:\
-ex=:\
-*.c=:\
-*.cc=:\
-*.clj=:\
-*.coffee=:\
-*.cpp=:\
-*.css=:\
-*.d=:\
-*.dart=:\
-*.erl=:\
-*.exs=:\
-*.fs=:\
-*.go=:\
-*.h=:\
-*.hh=:\
-*.hpp=:\
-*.hs=:\
-*.html=:\
-*.java=:\
-*.jl=:\
-*.js=:\
-*.json=:\
-*.lua=:\
-*.md=:\
-*.php=:\
-*.pl=:\
-*.pro=:\
-*.py=:\
-*.rb=:\
-*.rs=:\
-*.scala=:\
-*.ts=:\
-*.vim=:\
-*.cmd=:\
-*.ps1=:\
-*.sh=:\
-*.bash=:\
-*.zsh=:\
-*.fish=:\
-*.tar=:\
-*.tgz=:\
-*.arc=:\
-*.arj=:\
-*.taz=:\
-*.lha=:\
-*.lz4=:\
-*.lzh=:\
-*.lzma=:\
-*.tlz=:\
-*.txz=:\
-*.tzo=:\
-*.t7z=:\
-*.zip=:\
-*.z=:\
-*.dz=:\
-*.gz=:\
-*.lrz=:\
-*.lz=:\
-*.lzo=:\
-*.xz=:\
-*.zst=:\
-*.tzst=:\
-*.bz2=:\
-*.bz=:\
-*.tbz=:\
-*.tbz2=:\
-*.tz=:\
-*.deb=:\
-*.rpm=:\
-*.jar=:\
-*.war=:\
-*.ear=:\
-*.sar=:\
-*.rar=:\
-*.alz=:\
-*.ace=:\
-*.zoo=:\
-*.cpio=:\
-*.7z=:\
-*.rz=:\
-*.cab=:\
-*.wim=:\
-*.swm=:\
-*.dwm=:\
-*.esd=:\
-*.jpg=:\
-*.jpeg=:\
-*.mjpg=:\
-*.mjpeg=:\
-*.gif=:\
-*.bmp=:\
-*.pbm=:\
-*.pgm=:\
-*.ppm=:\
-*.tga=:\
-*.xbm=:\
-*.xpm=:\
-*.tif=:\
-*.tiff=:\
-*.png=:\
-*.svg=:\
-*.svgz=:\
-*.mng=:\
-*.pcx=:\
-*.mov=:\
-*.mpg=:\
-*.mpeg=:\
-*.m2v=:\
-*.mkv=:\
-*.webm=:\
-*.ogm=:\
-*.mp4=:\
-*.m4v=:\
-*.mp4v=:\
-*.vob=:\
-*.qt=:\
-*.nuv=:\
-*.wmv=:\
-*.asf=:\
-*.rm=:\
-*.rmvb=:\
-*.flc=:\
-*.avi=:\
-*.fli=:\
-*.flv=:\
-*.gl=:\
-*.dl=:\
-*.xcf=:\
-*.xwd=:\
-*.yuv=:\
-*.cgm=:\
-*.emf=:\
-*.ogv=:\
-*.ogx=:\
-*.aac=:\
-*.au=:\
-*.flac=:\
-*.m4a=:\
-*.mid=:\
-*.midi=:\
-*.mka=:\
-*.mp3=:\
-*.mpc=:\
-*.ogg=:\
-*.ra=:\
-*.wav=:\
-*.oga=:\
-*.opus=:\
-*.spx=:\
-*.xspf=:\
-*.pdf=:\
-*.nix=:\
-"
     
 #PS1='[\u@\h \W]\$ '
 PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
@@ -185,6 +29,7 @@ shopt -s cdspell
 #####   A L I A S   #####
 # system
 alias zzz='sudo /usr/bin/zzz'
+alias rrr='sudo /usr/bin/reboot'
 #alias qqq='sudo poweroff'
 #alias fw='sudo iptables -nvL'
 alias fwwatch='watch -n 5 sudo iptables -nvL'
@@ -193,6 +38,7 @@ alias eee='clear && cd /etc && ls'
 alias sss='clear && cd /var/service/ && ls && sudo sv s /var/service/*'
 alias vsv='sudo vsv'
 alias doas='doas --'
+alias resolv='sudo nano /etc/resolv.conf'
 # terminal
 alias ls='exa --color=always --group-directories-first'
 alias ll='exa -l --color=always --group-directories-first'
@@ -210,6 +56,8 @@ alias _='sudo'
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
 alias yyx='sudo xbps-install -uy xbps'
 #yys = function for searching packages
+#ys = function for searching packages with 'ag' in file 'voidpackages' - word
+#yss = F() for searching packages with 'ag' in file 'voidpackages' - greedy
 #yyss = function fuzzy search for a package 
 alias yyr='echo -e "sudo xbps-remove\n" && sudo xbps-remove'
 #yyrr = function fuzzy search AND remove
@@ -245,18 +93,24 @@ alias wiki-de='taizen --lang=de'
 alias wiki-es='taizen --lang=es'
 alias wiki-fr='taizen --lang=fr'
 alias wiki-la='taizen --lang=la'
+alias math='speedcrunch'
 
 # taskwarrior
 alias t='clear; task due.not:someday'
 alias tls='task ls due.not:someday'
 alias tl='task list due.not:someday'
-alias tla='clear; task all'
-alias tb='task minimal +book due.not:someday'
+alias tla='clear; task -DELETED -COMPLETED all'
+alias tbook='task minimal +book due.not:someday'
 alias tbd='task minimal waiting +bd'
-alias ts='task ls due:someday'
 alias ta='task add'
-alias tm='task $1 mod'
-alias te="task $1 edit"
+alias tm='task mod'
+alias te="task edit"
+alias tapt='clear; task \( +apt or +dr \) -COMPLETED -DELETED all'
+alias ti='clear; task +idee -COMPLETED -DELETED all'
+alias th='clear; task +home -COMPLETED -DELETED all'
+alias tg='clear; task +garten -COMPLETED -DELETED all'
+alias tb='clear; task +buy -COMPLETED -DELETED all'
+alias td='clear; task +do -COMPLETED -DELETED all'
 tr() {
 task "$1" mod "recur:$2"
 }
@@ -287,6 +141,16 @@ echo
 echo -e "REPO\tsudo xbps-query -Rs\n" && sudo xbps-query -Rs "$1"
 }
 
+ys ()
+{
+    ag --nonumber -w "$1" "$HOME/voidpackages"
+}
+
+yss ()
+{
+    ag --nonumber "$1" "$HOME/voidpackages" | most
+}
+
 yyii ()
 {
 sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
@@ -310,7 +174,7 @@ kernel ()
 # in order for 'which' to find aliases and functions
 which ()
 {
-  (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+  (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot "$@"
 }
 export -f which
 
@@ -350,6 +214,37 @@ ex ()
     fi
 }
 
+mman () {
+    NOTE="$(fd ${1}.md vimwiki/)"
+    if [ ! -f "$NOTE" ]
+    then
+      echo "No mman entry for $1" >&2
+      return 1
+    fi
+
+    case $2 in
+        edit)
+            ${EDITOR:-vim} "$NOTE"
+            ;;
+        *)
+            TITLE="$(echo $1 | sed 's/[a-z]/\U&/g')"
+            SECTION="my manpages"
+            AUTHOR="Axel"
+            DATE="$(date +'%B %d, %Y' -r "$NOTE")"
+
+            pandoc \
+                --standalone \
+                --from markdown \
+                --to man \
+                --metadata title="$TITLE" \
+                --metadata author="$AUTHOR" \
+                --metadata section="$SECTION" \
+                --metadata date="$DATE" \
+                "$NOTE" | groff -T utf8 -man | most
+            ;;
+    esac
+}
+
 #####   END FUNCTIONS   #####
 
 ############################################################
@@ -382,3 +277,7 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 
 
 
+
+complete -C /home/maya/bin/mc mc
+
+source <(cod init $$ bash)
