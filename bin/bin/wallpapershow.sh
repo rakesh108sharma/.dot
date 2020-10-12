@@ -13,6 +13,7 @@ running=$(pgrep -c wallpapershow)
 
 herbe "start diashow..."
 
+
 # start the background process
 {
 
