@@ -2,6 +2,8 @@
 #
 # keeping things clean
 
+#####BEGIN
+
 clear
 echo "UPDATING..."
 sleep 1
@@ -31,4 +33,12 @@ tldr --update
 clear
 echo "TRIMMING..."
 sudo fstrim /
+sudo fstrim /home
 
+clear
+echo "Putztag ist vorbei."
+echo
+
+exit 0
+
+##### END

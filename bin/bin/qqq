@@ -2,6 +2,8 @@
 #
 # my poweroff
 
+##### BEGIN
+
 amixer set Master 20%
 
 mimic "system halt!"
@@ -12,10 +14,12 @@ clear
 
 vnstat
 
-sleep 4
+sleep 6
 
 
 sudo poweroff
 
- 
+exit 0
+
+##### END
 

@@ -6,8 +6,7 @@
 # error function
 error()
 {
-    dunstify -u critical "CANNOT update adblock-list!
-    please check manually"
+    herber "CANNOT update adblock-list!" "please check manually"
     exit 1
 }
 
@@ -20,7 +19,7 @@ curl -s https://easylist.to/easylist/fanboy-social.txt -o .local/share/luakit/ad
 curl -s https://easylist.to/easylist/fanboy-annoyance.txt -o .local/share/luakit/adblock/fanboy-annoyance.txt || error
 
 # message only if all lists were updated without error
-dunstify "all adblock-lists are updated"
+herbe "all adblock-lists are updated"
 
 
 exit 0

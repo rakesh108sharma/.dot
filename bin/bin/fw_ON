@@ -2,6 +2,8 @@
 #
 # turn ON firewall
 
+##### BEGIN 
+
 sudo iptables -F
 sudo iptables -X
 
@@ -38,4 +40,8 @@ sudo iptables -P OUTPUT ACCEPT
 sudo iptables -P FORWARD DROP
 
 
-notify-send.sh -u normal ".\n   firewall   ON \n."
+herbe " " "firewall   ON" " "
+
+exit 0
+
+##### END

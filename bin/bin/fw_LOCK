@@ -3,6 +3,8 @@
 # turn firewall ON and block EVERYTHING
 # except "lo"
 
+##### BEGIN 
+
 sudo iptables -F
 sudo iptables -X
 
@@ -13,4 +15,8 @@ sudo iptables -P INPUT DROP
 sudo iptables -P OUTPUT DROP
 sudo iptables -P FORWARD DROP
 
-notify-send -u normal ".\n   firewall blocks \n   EVERYTHING! \n."
+herbe " " "firewall blocks" " " "EVERYTHING!" " "
+
+exit 0
+
+##### END

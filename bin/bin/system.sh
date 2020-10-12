@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 #
 # ! autostart.sh !
 # quick and dirty system check for:
@@ -6,6 +6,8 @@
 #    - jails
 #    - network
 #    - firewall
+
+##### BEGIN 
 
 # daemons
 sudo vsv 
@@ -73,3 +75,4 @@ echo
 
 exit 0
 
+##### END

@@ -3,11 +3,14 @@
 # !! CRONTAB !!
 # update system automatically
 
+##### BEGIN
+
 export DISPLAY=:0.0 
 
-sudo xbps-install -Suy && 
-    notify-send "updating..." ||
-    notify-send --urgency=critical "update FAILED!.....please check manually!"
-#dunstify "hello"
+sudo xbps-install -Suy \
+    &&  { herbe "updating..." & } \
+    || herber "update FAILED!" " " "...please check manually!"
 
 exit 0
+
+##### END

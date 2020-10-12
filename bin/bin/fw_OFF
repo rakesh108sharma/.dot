@@ -3,6 +3,8 @@
 # turn OFF firewall
 # this is the default linux
 
+##### BEGIN 
+
 sudo iptables -F
 sudo iptables -X
 
@@ -10,5 +12,8 @@ sudo iptables -P INPUT ACCEPT
 sudo iptables -P OUTPUT ACCEPT
 sudo iptables -P FORWARD ACCEPT
 
-notify-send -u critical ".\n   firewall   OFF \n."
+herber " " "   firewall   OFF   " " "
 
+exit 0
+
+##### END
