@@ -16,10 +16,8 @@ vnstat
 
 sleep 6
 
-
 sudo poweroff
 
 exit 0
 
 ##### END
-

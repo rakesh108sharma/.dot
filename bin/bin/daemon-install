@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 #
 # installs a daemon
 # - first checks:
@@ -9,21 +9,30 @@
 
 ##### BEGIN
 
-[ -e /var/service/"$1" ] \
-  && echo "\tdaemon $1 already exists\n" \
-  && sudo vsv status "$1" \
-  && exit
+err="\033[5;31;40mERROR:\033[0m\033[31;40m"
+nul="\033[0m"
 
-[ ! -e /etc/sv/"$1" ] \
-  && echo "\tcould not find daemon $1 in /etc/sv/\n" \
-  && ls /etc/sv/ \
-  && exit
+# check if daemon exists already
+if [ -e /var/service/"$1" ]; then
+    echo -e "$err daemon already exists: $nul $1"
+    doas vsv status "$1"
+    exit 1
+fi
 
+# check if the daemon is available
+if [ ! -e /etc/sv/"$1" ]; then
+    echo -e "$err could not find daemon: $nul $1"
+    echo
+    ls /etc/sv/
+    exit 1
+fi
 
-sudo ln -s /etc/sv/"$1" /var/service \
-  && sleep 5 \
-  && sudo vsv status "$1" \
-  || echo "ERROR: could NOT install $1"
+# install the daemon
+doas ln -s /etc/sv/"$1" /var/service || echo -e "$err could NOT install $1! $nul"
+
+# show status
+sleep 5
+doas vsv status "$1"
 
 exit 0
 

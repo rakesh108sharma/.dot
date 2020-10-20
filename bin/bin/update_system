@@ -5,11 +5,13 @@
 
 ##### BEGIN
 
-export DISPLAY=:0.0 
+export DISPLAY=:0.0
 
-sudo xbps-install -Suy \
-    &&  { herbe "updating..." & } \
-    || herber "update FAILED!" " " "...please check manually!"
+if sudo xbps-install -Suy; then
+    herbe "updating..."
+else
+    herber "update FAILED!" " " "...please check manually!"
+fi
 
 exit 0
 

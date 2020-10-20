@@ -129,7 +129,7 @@ notify-send.sh -u normal ".\n   firewall   ON \n."
 # usage message
 usage () {
 echo "ERROR"
-echo "   USAGE: fwc [off|basic|normal|lock]"
+echo "   USAGE: fw [off|basic|normal|lock]"
 exit 1
 }
 

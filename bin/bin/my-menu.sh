@@ -10,8 +10,8 @@ bash
 xinitrc
 rc
 vim
-THIS-menu" | dmenu -l 15)
-
+THIS-menu" | dmenu -l 16)
+ 
 case $choice in
     chromium)
         chromium &

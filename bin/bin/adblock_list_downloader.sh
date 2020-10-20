@@ -4,12 +4,10 @@
 # alle adblock-listen werden upgedated
 
 # error function
-error()
-{
+error() {
     herber "CANNOT update adblock-list!" "please check manually"
     exit 1
 }
-
 
 # get all lists OR exit with error
 curl -s https://easylist.to/easylist/easylist.txt -o .local/share/luakit/adblock/easylist.txt || error
@@ -20,6 +18,5 @@ curl -s https://easylist.to/easylist/fanboy-annoyance.txt -o .local/share/luakit
 
 # message only if all lists were updated without error
 herbe "all adblock-lists are updated"
-
 
 exit 0

@@ -1,5 +1,9 @@
 $include /etc/inputrc
 
+$if Bash
+    Space: magic-space
+$endif
+
 set completion-ignore-case On
 set colored-stats On
 set visible-stats On

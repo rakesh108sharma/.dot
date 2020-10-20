@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 # !! CRONTAB !!
-# trims all SSDs periodically 
+# trims all SSDs periodically
 
 ##### BEGIN
 
-sudo fstrim / || { notify-send -u critical "cannot trim /" && exit ; }
-sudo fstrim /home || { notify-send -u critical "cannot trim /home" && exit ; }
-sudo fstrim /media/SSD-120G || { notify-send -u critical "cannot trim /media/SSD-120G" && exit ; }
+sudo fstrim / || herber "cannot trim   /"
+sudo fstrim /home || herber "cannot trim   /home"
+sudo fstrim /media/SSD-120G || herber "cannot trim   /media/SSD-120G"
 
 herbe "trimming complete!"
 

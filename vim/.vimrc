@@ -108,6 +108,14 @@ cnoremap <C-K> <C-U>
 vmap < <gv
 vmap > >gv
 
+"ale
+let g:ale_completion_enabled = 1 
+let g:ale_linters = { 'python': ['flake8']}
+let g:ale_fixers = { 
+            \ 'python': ['black'],
+            \ 'sh': ['shfmt']
+            \ }
+let g:ale_fix_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -131,7 +139,6 @@ call plug#begin()
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
     Plug 'voldikss/vim-floaterm'
-    Plug 'tbabej/taskwiki'
     Plug 'blindfs/vim-taskwarrior'
     Plug 'jarsp/cornell.vim' 
     Plug 'reedes/vim-pencil'
@@ -177,10 +184,6 @@ let g:vimwiki_list = [
             \{'path': '~/vimwiki/linux/', 'syntax': 'markdown', 'ext': '.md'},
             \]
 
-"ale
-let g:ale_linters = { 'python': ['flake8']}
-let g:ale_fixers = { 'python': ['black']}
-let g:ale_fix_on_save = 1
 
 " BUFFERS (Tabs)
 " Enable the list of buffers

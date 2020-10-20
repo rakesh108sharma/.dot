@@ -4,41 +4,43 @@
 
 #####BEGIN
 
+f="\033[5;34;40m" # flash
+r="\033[0m"       # reset
+
 clear
-echo "UPDATING..."
+echo -e "$f UPDATING... $r"
 sleep 1
 sudo xbps-install -uy
 sudo xbps-install -Suy
 sudo xbps-install -Suy
 
 clear
-echo "REMOVING orphans   AND   CLEARING cache..."
+echo -e "$f REMOVING orphans   AND   CLEARING cache... $r"
 sleep 1
 sudo xbps-remove -oy
 sudo xbps-remove -O
 
 clear
-echo "CLEANING trash..."
+echo -e "$f CLEANING trash... $r"
 rm -r "$HOME"/.trash/*
 
 clear
-echo "REMOVING old kernels..."
+echo -e "$f REMOVING old kernels... $r"
 sleep 1
 sudo vkpurge rm all
 
 clear
-echo "UPDATING tldr..."
+echo -e "$f UPDATING tldr... $r"
 tldr --update
 
 clear
-echo "TRIMMING..."
+echo -e "$f TRIMMING... $r"
 sudo fstrim /
 sudo fstrim /home
 
 clear
-echo "Putztag ist vorbei."
+echo -e "\033[32;40m Putztag ist vorbei. $r"
 echo
 
 exit 0
-
 ##### END
