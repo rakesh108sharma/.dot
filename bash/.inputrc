@@ -9,6 +9,8 @@ set colored-stats On
 set visible-stats On
 set show-all-if-ambiguous on
 set echo-control-characters off
+# made DEL work in st
+set enable-keypad on 
 
 "\ep": '\C-e | most \015'
 "\ed": '\C-a "$(\C-e)"\C-a'

@@ -1,0 +1,33 @@
+XF86Audio{Raise,Lower}Volume
+    amixer sset Master {5%+,5%-} unmute
+XF86AudioMute
+    amixer sset Master toggle
+
+super + o; n
+    $TERMINAL -e nano
+
+super + o; v
+    $TERMINAL -e vim
+
+super + o; {b, x, a, k}
+    $TERMINAL -e vim {~/.bashrc, \
+                      ~/.xinitrc, \ 
+                      ~/bin/autostart.sh, \
+                      ~/.config/sxhkd/sxhkdrc}
+
+super + alt + f
+    $TERMINAL -e lf
+
+super + alt + n
+    $TERMINAL -e newsboat
+
+super + alt + r
+    $TERMINAL -e curseradio
+
+super + alt + p
+    $TERMINAL -e castero
+
+ctrl + shift + f
+    $TERMINAL -e less $(~/bin/fw) 
+
+

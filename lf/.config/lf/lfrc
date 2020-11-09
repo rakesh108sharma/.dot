@@ -37,6 +37,7 @@ map O $mimeopen --ask $f
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
 cmd open ${{
+    [ ${f##*.} = "m3u" ] && mpv $fx && exit
     case $(file --mime-type $f -b) in
         text/html) chromium $fx;;
         text/*) $EDITOR $fx;;

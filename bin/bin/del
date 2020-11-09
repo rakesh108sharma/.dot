@@ -1,0 +1,57 @@
+#!/bin/dash
+#
+# instead of delting files with 'rm' 'del' moves those files to '.trash'
+
+trashdir="$HOME/.trash"
+
+# 0: help
+case "$1" in
+    help|--help|-h|-?) 
+cat << EOF
+"del" does not delete files, but moves them to the ~/.trash folder instead.
+if trash folder does not exist, it will be created.
+
+del [help|--help|-h|-?]          This help page
+
+del [FILE .. FILE]               Move FILE(s) to ~/.trash folder
+
+del                              Empty trash
+
+EOF
+        exit 
+        ;;
+esac
+
+
+# 1: check if trash exists
+if [ ! -d "$trashdir" ] ; then
+    mkdir "$trashdir"
+    echo "Trash-directory $trashdir does not exist.."
+    echo "..creating $trashdir"
+fi
+
+# 2: empty trash if 'del' is called without parameters
+if [ "$#" -eq 0 ] ; then
+    cd "$trashdir" || exit 1
+    [ ! "$(/bin/ls --almost-all)" ] && echo "Trash already empty." && exit
+    ls --all
+    rm --recursive --interactive=once -- * 
+    echo "Trash has been deleted!"
+    echo
+fi
+
+# 3: move files to trash folder
+for file in "$@"
+do
+    if [ ! -e "$file" ]; then
+        echo "$file does NOT exist.."
+        echo "..skipping." 
+    else
+    mv "$file" "$trashdir"  &&
+        echo "deleting $file" ||
+        echo "ERROR: could NOT delete file: $file"
+    fi
+done
+
+exit 0
+

@@ -15,10 +15,12 @@ export EDITOR=nano
 export BROWSER=chromium
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export TERMINAL=st
 export SHELL=/bin/bash
 export CDPATH='~'
 export MINIO_ACCESS_KEY=maya
 export MINIO_SECRET_KEY=alex67ander
+export FFF_TRASH=~/.trash
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
@@ -78,6 +80,7 @@ alias nn='newsboat'
 alias pp='castero'
 alias rr='curseradio'
 alias grep='grep --color=auto'
+alias rm='rm -I'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias qmv='qmv -e vim'
@@ -182,7 +185,7 @@ run() {
 down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g'; }
 mkcd() {
     mkdir -p -- "$*"
-    cd -- "$*"
+    cd -- "$*" || exit
 }
 copy() { scp "$@" void@192.168.1.12:; }
 
