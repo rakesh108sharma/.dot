@@ -38,6 +38,7 @@ map O $mimeopen --ask $f
 # text files and a file opener for the rest.
 cmd open ${{
     [ ${f##*.} = "m3u" ] && mpv $fx && exit
+    [ ${f##*.} = "m4a" ] && mpv $fx && exit
     case $(file --mime-type $f -b) in
         text/html) chromium $fx;;
         text/*) $EDITOR $fx;;
@@ -122,14 +123,14 @@ map e $v $f
 map gt cd ~/.trash
 map ge cd /etc
 map gs cd /var/service
-map g. cd ~/.dotfiles
+map g. cd ~/.dot
 map gd cd ~/downloads
 map gu cd /usr/share
 map gc cd ~/.config
 map gm cd /media
 map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
-map ga cd "/media/sdX1-300G/home/void/M U S I C"
+map ga cd ~/audio
 map gv cd ~/video
 
 # CONFIG-section

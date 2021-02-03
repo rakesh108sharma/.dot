@@ -1,136 +1,154 @@
 #!/bin/bash
 #
 # firewall prg
+#
+# !! "fw basic" wird beim BOOTen von /etc/rc.local gestartet !!
 
 ############### FUNCTIONS ###############
 
 # turn firewall ON and block EVERYTHING
 # except "lo"
-fw_lock () {
-sudo iptables -F
-sudo iptables -X
+fw_lock() {
+    sudo iptables -F
+    sudo iptables -X
 
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A OUTPUT -o lo -j ACCEPT
+    sudo iptables -A INPUT -i lo -j ACCEPT
+    sudo iptables -A OUTPUT -o lo -j ACCEPT
 
-sudo iptables -P INPUT DROP
-sudo iptables -P OUTPUT DROP
-sudo iptables -P FORWARD DROP
+    sudo iptables -P INPUT DROP
+    sudo iptables -P OUTPUT DROP
+    sudo iptables -P FORWARD DROP
 
-notify-send -u normal ".\n   firewall complete LOCK \n"
+    notify-send -u normal ".\n   firewall complete LOCK \n"
 }
-
 
 # turn OFF firewall
 # this is the default linux
-fw_off () {
-sudo iptables -F
-sudo iptables -X
+fw_off() {
+    sudo iptables -F
+    sudo iptables -X
 
-sudo iptables -P INPUT ACCEPT
-sudo iptables -P OUTPUT ACCEPT
-sudo iptables -P FORWARD ACCEPT
+    sudo iptables -P INPUT ACCEPT
+    sudo iptables -P OUTPUT ACCEPT
+    sudo iptables -P FORWARD ACCEPT
 
-notify-send -u critical ".\n   firewall   OFF \n."
+    notify-send -u critical ".\n   firewall   OFF \n."
+}
+
+# turn ON MINIMAL firewall
+# as founf in /etc/iptables/simples_firewall.rules
+fw_minimal() {
+    sudo iptables -F
+    sudo iptables -X
+
+    sudo iptables -P INPUT DROP
+    sudo iptables -P OUTPUT ACCEPT
+    sudo iptables -P FORWARD DROP
+
+    sudo iptables -p icmp -j ACCEPT
+    sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    sudo iptables -A INPUT -i lo -j ACCEPT
+    sudo iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+    sudo iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+    sudo iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
 }
 
 # basic firewall
-fw_basic () {
-IPTABLES="sudo /bin/iptables"
+fw_basic() {
+    IPTABLES="sudo /bin/iptables"
 
-##################
-# Purge/Flush 
-##################
+    ##################
+    # Purge/Flush
+    ##################
 
-# Alle Regeln löschen
-$IPTABLES -F 
-$IPTABLES -t nat -F
-$IPTABLES -t mangle -F
+    # Alle Regeln löschen
+    $IPTABLES -F
+    $IPTABLES -t nat -F
+    $IPTABLES -t mangle -F
 
-# Alle Regelketten löschen
-$IPTABLES -X 
-$IPTABLES -t nat -X
-$IPTABLES -t mangle -X
+    # Alle Regelketten löschen
+    $IPTABLES -X
+    $IPTABLES -t nat -X
+    $IPTABLES -t mangle -X
 
-##################
-# Regeln
-##################
-# IPv4 Default
-$IPTABLES -P INPUT DROP
-$IPTABLES -P FORWARD DROP
-$IPTABLES -P OUTPUT ACCEPT
+    ##################
+    # Regeln
+    ##################
+    # IPv4 Default
+    $IPTABLES -P INPUT DROP
+    $IPTABLES -P FORWARD DROP
+    $IPTABLES -P OUTPUT ACCEPT
 
-# Loopback-Schnittstelle Verkehr erlauben
-$IPTABLES -A INPUT -i lo -j ACCEPT 
-$IPTABLES -A OUTPUT -o lo -j ACCEPT
+    # Loopback-Schnittstelle Verkehr erlauben
+    $IPTABLES -A INPUT -i lo -j ACCEPT
+    $IPTABLES -A OUTPUT -o lo -j ACCEPT
 
-# ICMP-Antwortpakete erlauben
-$IPTABLES -A INPUT -p icmp -m icmp --icmp-type echo-reply -j ACCEPT 
-$IPTABLES -A INPUT -p icmp -m icmp --icmp-type echo-request -j ACCEPT 
-$IPTABLES -A INPUT -p icmp -m icmp --icmp-type destination-unreachable -j ACCEPT
+    # ICMP-Antwortpakete erlauben
+    $IPTABLES -A INPUT -p icmp -m icmp --icmp-type echo-reply -j ACCEPT
+    $IPTABLES -A INPUT -p icmp -m icmp --icmp-type echo-request -j ACCEPT
+    $IPTABLES -A INPUT -p icmp -m icmp --icmp-type destination-unreachable -j ACCEPT
 
-# Alle Pakete zu einer bestehenden TCP-Verbindung akzeptieren
-$IPTABLES -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    # Alle Pakete zu einer bestehenden TCP-Verbindung akzeptieren
+    $IPTABLES -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-# Allow  SSH
-$IPTABLES -A INPUT -i enp37s0 -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
+    # Allow  SSH
+    $IPTABLES -A INPUT -i enp37s0 -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
 
-# Alle Pakete ordentlich zurückweisen
-$IPTABLES -A INPUT -p tcp -j REJECT --reject-with tcp-reset 
-$IPTABLES -A INPUT -j REJECT --reject-with icmp-port-unreachable
+    # Alle Pakete ordentlich zurückweisen
+    $IPTABLES -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+    $IPTABLES -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
-# last rule: reject everything
-$IPTABLES -A INPUT -j REJECT
+    # last rule: reject everything
+    $IPTABLES -A INPUT -j REJECT --reject-with icmp-proto-unreachable
 
-notify-send.sh -u normal ".\n   firewall   basic - ON \n."
+    notify-send.sh -u normal ".\n   firewall   basic - ON \n."
 }
 
 # normal
 # 1. versuch
-fw_normal () {
-sudo iptables -F
-sudo iptables -X
+fw_normal() {
+    sudo iptables -F
+    sudo iptables -X
 
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+    sudo iptables -A INPUT -i lo -j ACCEPT
+    sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    sudo iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 
-sudo iptables -A INPUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+    sudo iptables -A INPUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
 
-sudo iptables -A INPUT -s 192.168.1.5 -j REJECT
+    sudo iptables -A INPUT -s 192.168.1.5 -j REJECT
 
-sudo iptables -A INPUT -p tcp -i enp37s0 -s 192.168.1.0/24 -m tcp --dport 22 -m state --state NEW -j ACCEPT
-sudo iptables -A INPUT -p tcp -i enp37s0 -s 192.168.1.0/24 -m tcp --dport 8080 -m state --state NEW -j ACCEPT
+    sudo iptables -A INPUT -p tcp -i enp37s0 -s 192.168.1.0/24 -m tcp --dport 22 -m state --state NEW -j ACCEPT
+    sudo iptables -A INPUT -p tcp -i enp37s0 -s 192.168.1.0/24 -m tcp --dport 8080 -m state --state NEW -j ACCEPT
 
-sudo iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP           # NULL packets
-#sudo iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP   # syn-flood attack
-sudo iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP            # xmas attack
-#sudo iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
-#sudo iptables -A INPUT -p icmp --icmp-type time-exceeded -j ACCEPT
-#sudo iptables -A INPUT -p icmp --icmp-type destination-unreachable -j ACCEPT
+    sudo iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP # NULL packets
+    #sudo iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP   # syn-flood attack
+    sudo iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP # xmas attack
+    #sudo iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+    #sudo iptables -A INPUT -p icmp --icmp-type time-exceeded -j ACCEPT
+    #sudo iptables -A INPUT -p icmp --icmp-type destination-unreachable -j ACCEPT
 
-sudo iptables -A INPUT -p tcp --syn -m limit --limit 5/s -i enp3s0 -j ACCEPT
-# LOG and DROP all unwanted packets
-#sudo iptables -A INPUT -p udp -s 192.168.1.5 -i enp37s0 -d 224.0.0.251 -j DROP
-#sudo iptables -A INPUT -s 192.168.1.1 -i enp37s0 -d 224.0.0.1 -j ACCEPT
-sudo iptables -A INPUT -j LOG --log-prefix "UNWANTED-INPUT "
-sudo iptables -A FORWARD -j LOG --log-prefix "UNWANTED-FORWARD "
-sudo iptables -A INPUT -j DROP
+    sudo iptables -A INPUT -p tcp --syn -m limit --limit 5/s -i enp3s0 -j ACCEPT
+    # LOG and DROP all unwanted packets
+    #sudo iptables -A INPUT -p udp -s 192.168.1.5 -i enp37s0 -d 224.0.0.251 -j DROP
+    #sudo iptables -A INPUT -s 192.168.1.1 -i enp37s0 -d 224.0.0.1 -j ACCEPT
+    sudo iptables -A INPUT -j LOG --log-prefix "UNWANTED-INPUT "
+    sudo iptables -A FORWARD -j LOG --log-prefix "UNWANTED-FORWARD "
+    sudo iptables -A INPUT -j DROP
 
-# Policies
-sudo iptables -P INPUT DROP
-sudo iptables -P OUTPUT ACCEPT
-sudo iptables -P FORWARD DROP
+    # Policies
+    sudo iptables -P INPUT DROP
+    sudo iptables -P OUTPUT ACCEPT
+    sudo iptables -P FORWARD DROP
 
-
-notify-send.sh -u normal ".\n   firewall   ON \n."
+    notify-send.sh -u normal ".\n   firewall   ON \n."
 }
 
 # usage message
-usage () {
-echo "ERROR"
-echo "   USAGE: fw [off|basic|normal|lock]"
-exit 1
+usage() {
+    echo "ERROR"
+    echo "   USAGE: fw [off|basic|minimal|normal|lock]"
+    exit 1
 }
 
 ###############   M A I N   ###############
@@ -139,16 +157,15 @@ exit 1
 [ ! "$#" -eq 1 ] && usage
 
 case "$1" in
-  "off") fw_off ;;
-  "basic") fw_basic ;;
-  "normal") fw_normal ;;
-  "lock") fw_lock ;;
-  *) usage ;;
+"off") fw_off ;;
+"minimal") fw_minimal ;;
+"basic") fw_basic ;;
+"normal") fw_normal ;;
+"lock") fw_lock ;;
+*) usage ;;
 esac
 
-sudo iptables -L -v 
-
-
+sudo iptables -L -v
 
 exit 0
 ###############   E N D   ###############

@@ -24,5 +24,5 @@ export ENV=$HOME/.dashrc
 # login happens automatic too
 #       added "-a void" for "GETTY_ARGS" in /etc/sv/agetty-tty1/c$
 # might be overwritten by an system update
-startx
+#startx
 

@@ -22,6 +22,7 @@ filetype indent on      " load indent for different file types
 set showcmd             " show command in last line of screen
 set hidden              " hide buffers
 set ruler
+set mouse=a             " jumps to where the mouse-click is
 
 set ignorecase
 set smartcase           " ignore case if search contains majuscules
@@ -37,7 +38,7 @@ set ai                  "auto indent
 set si                  "smart indent
 
 set textwidth=80        " hard wrap at this column
-set wrap                "wrap lines
+set wrap                " wrap lines
 set magic               " for regular expressions turn magic on
 set showmatch           " highlight matching [{()}]
 set mat=2
@@ -127,7 +128,7 @@ endif
 
 call plug#begin()
     Plug 'vim-airline/vim-airline'
-    "Plug 'tomasr/molokai'
+"   Plug 'tomasr/molokai'
     Plug 'morhetz/gruvbox'
     Plug 'vimwiki/vimwiki'
     Plug 'itchyny/calendar.vim'
@@ -139,8 +140,7 @@ call plug#begin()
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dense-analysis/ale'
     Plug 'voldikss/vim-floaterm'
-    Plug 'blindfs/vim-taskwarrior'
-    Plug 'jarsp/cornell.vim' 
+"    Plug 'blindfs/vim-taskwarrior'
     Plug 'reedes/vim-pencil'
 call plug#end()
 
@@ -167,7 +167,7 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
 
 " undotree
-nnoremap <leader>u :UndotreeShow<CR>:wincmd w<CR>
+nnoremap <leader>u :UndotreeToggle<CR>:wincmd w<CR>
 
 "floaterm
 nnoremap <C-t> :FloatermNew --height=0.9 --width=0.8<CR>

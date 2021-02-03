@@ -3,6 +3,8 @@
 # !! CRONTAB !!
 # alle adblock-listen werden upgedated
 
+export DISPLAY=:0.0
+
 # error function
 error() {
     herber "CANNOT update adblock-list!" "please check manually"

@@ -7,14 +7,14 @@
 #    - network
 #    - firewall
 
-##### BEGIN 
+##### BEGIN
 
 # daemons
-sudo vsv 
+doas vsv
 read -p "          press <ENTER>"
 clear
 
-# scron 
+# scron
 echo "          CRONTAB"
 echo
 cat /etc/crontab
@@ -50,7 +50,7 @@ clear
 
 # firewall
 echo "          FIREWALL"
-sudo iptables -L -v
+doas iptables -L -v
 read -p "          press <ENTER>"
 clear
 

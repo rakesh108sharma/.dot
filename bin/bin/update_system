@@ -7,7 +7,9 @@
 
 export DISPLAY=:0.0
 
-if sudo xbps-install -Suy; then
+sleep 5
+
+if doas xbps-install -Suy; then
     herbe "updating..."
 else
     herber "update FAILED!" " " "...please check manually!"

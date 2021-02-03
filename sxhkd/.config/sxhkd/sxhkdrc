@@ -1,7 +1,18 @@
+# make sxhkd reload its configuration files:
+super + Escape
+    pkill -USR1 -x sxhkd; \
+    herbe 'RELOAD: sxhkd'
+
+
+# AUDIO
+
 XF86Audio{Raise,Lower}Volume
     amixer sset Master {5%+,5%-} unmute
 XF86AudioMute
     amixer sset Master toggle
+
+
+# OPEN CONFIG FILES
 
 super + o; n
     $TERMINAL -e nano
@@ -15,19 +26,84 @@ super + o; {b, x, a, k}
                       ~/bin/autostart.sh, \
                       ~/.config/sxhkd/sxhkdrc}
 
-super + alt + f
+
+# APPLICATIONS
+
+# terminal
+super + Return; Return
+    $TERMINAL
+XF86HomePage
+    $TERMINAL
+
+super + Return; super + q
+    qterminal
+
+# anki
+super + Return; a
+    $TERMINAL -e anki
+XF86Tools; a
+    $TERMINAL -e anki
+
+# browser minimal
+super + Return; b
+    luakit
+XF86Tools; b
+    luakit
+
+# browser
+super + Return; shift + b
+    chromium
+XF86Tools; shift + b
+    chromium
+
+XF86Tools; ctrl + b
+    firefox
+
+# file manager
+super + Return; f
+    $TERMINAL -e lf
+XF86Tools; f
     $TERMINAL -e lf
 
-super + alt + n
+# htop
+super + Return; h
+    $TERMINAL -e htop
+XF86Tools; h
+    $TERMINAL -e htop
+
+# via
+super + alt + p
+    via
+
+# RSS reader & youtube viewer
+super + Return; n
+    $TERMINAL -e newsboat
+XF86Tools; n
     $TERMINAL -e newsboat
 
-super + alt + r
-    $TERMINAL -e curseradio
-
-super + alt + p
+# podcasts
+super + Return; p
+    $TERMINAL -e castero
+XF86Tools; p
     $TERMINAL -e castero
 
+# radio
+super + Return; r
+    $TERMINAL -e curseradio
+XF86Tools; r
+    $TERMINAL -e curseradio
+
+
 ctrl + shift + f
-    $TERMINAL -e less $(~/bin/fw) 
+    $TERMINAL -e sudo iptables -L -v | less  
+
+# screenshot - complete sBhcreen
+Print
+    scrot -e 'mv $f ~/pictures/screenshots/'
+
+# screenshot - select frame
+Print + shift
+    sleep 0.2; \
+    scrot -s -e 'mv $f ~/pictures/screenshots/'
 
 

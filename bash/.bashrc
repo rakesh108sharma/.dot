@@ -21,6 +21,10 @@ export CDPATH='~'
 export MINIO_ACCESS_KEY=maya
 export MINIO_SECRET_KEY=alex67ander
 export FFF_TRASH=~/.trash
+export GTK_IM_MODULE='ibus'
+export QT_IM_MODULE='ibus'
+export SDL_IM_MODULE='ibus'
+export XMODIFIERS='@im=ibus'
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
@@ -83,7 +87,7 @@ alias grep='grep --color=auto'
 alias rm='rm -I'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias qmv='qmv -e vim'
+alias qmv='qmv --editor=vim --format=destination-only'
 alias qcp='qcp -e vim'
 alias du='du -h | sort -h | tail -n 20'
 alias df='df -h | grep /dev/sd | sort -k 1'
@@ -98,7 +102,10 @@ alias wiki-es='taizen --lang=es'
 alias wiki-fr='taizen --lang=fr'
 alias wiki-la='taizen --lang=la'
 alias math='speedcrunch'
-
+alias yt='youtube-dl -F'
+alias ytv='youtube-dl -f 22'
+alias yta='youtube-dl -f 140'
+alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 # taskwarrior
 alias t='clear; task due.not:someday'
 alias tls='task ls due.not:someday'

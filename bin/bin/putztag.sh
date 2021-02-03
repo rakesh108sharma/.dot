@@ -10,15 +10,15 @@ r="\033[0m"       # reset
 clear
 echo -e "$f UPDATING... $r"
 sleep 1
-sudo xbps-install -uy
-sudo xbps-install -Suy
-sudo xbps-install -Suy
+doas xbps-install -Suy xbps
+doas xbps-install -Suy
+doas xbps-install -Suy
 
 clear
 echo -e "$f REMOVING orphans   AND   CLEARING cache... $r"
 sleep 1
-sudo xbps-remove -oy
-sudo xbps-remove -O
+doas xbps-remove -oy
+doas xbps-remove -O
 
 clear
 echo -e "$f CLEANING trash... $r"
@@ -27,7 +27,7 @@ rm -r "$HOME"/.trash/*
 clear
 echo -e "$f REMOVING old kernels... $r"
 sleep 1
-sudo vkpurge rm all
+doas vkpurge rm all
 
 clear
 echo -e "$f UPDATING tldr... $r"
@@ -35,8 +35,8 @@ tldr --update
 
 clear
 echo -e "$f TRIMMING... $r"
-sudo fstrim /
-sudo fstrim /home
+doas fstrim /
+doas fstrim /home
 
 clear
 echo -e "\033[32;40m Putztag ist vorbei. $r"
