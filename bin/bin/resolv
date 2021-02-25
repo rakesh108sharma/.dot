@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# choose DNS server AND write to resolf.conf
+
+choice=$(echo "\
+127.0.0.1
+192.168.1.1
+1.1.1.1
+8.8.8.8
+" | dmenu -p "enter DNS: ") 
+
+
+echo "${choice}" | sudo tee /etc/resolv.conf
+
+
+

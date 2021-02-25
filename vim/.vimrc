@@ -117,6 +117,8 @@ let g:ale_fixers = {
             \ 'sh': ['shfmt']
             \ }
 let g:ale_fix_on_save = 1
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -185,6 +187,9 @@ let g:vimwiki_list = [
             \]
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DIVERS 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BUFFERS (Tabs)
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -207,6 +212,20 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
+
+
+" VPM-MODE
+"vim presentation mode
+autocmd BufNewFile,BufRead *.vpm call SetVimPresentationMode()
+function SetVimPresentationMode()
+    nnoremap <buffer> <Right> :n<CR>
+    nnoremap <buffer> <Left> :N<CR>
+
+    if !exists('#goyo')
+        Goyo
+    endif
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " HELPER functions
