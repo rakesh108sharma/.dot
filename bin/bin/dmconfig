@@ -1,0 +1,16 @@
+#!/bin/bash
+
+choice=$(echo -e "\
+bash          @     $HOME/.bashrc
+zsh           @     $HOME/.zshrc
+xinitrc       @     $HOME/.xinitrc
+autostart     @     $HOME/bin/autostart.sh
+vim           @     $HOME/.vimrc
+lf            @     $HOME/.config/lf/lfrc
+mimeapps      @     $HOME/.config/mimeapps.list
+
+THIS-menu     @     $HOME/bin/my-menu2.sh" | dmenu -i -l 16 -p "EDIT")
+
+go=$(echo "$choice" | cut -d'@' -f2)
+[ -z "$go"] && exit 1
+st -e vim $go

@@ -15,19 +15,23 @@ doas xbps-install -Suy
 doas xbps-install -Suy
 
 clear
-echo -e "$f REMOVING orphans   AND   CLEARING cache... $r"
+echo -e "$f REMOVING old kernels... $r"
+sleep 1
+doas vkpurge rm all
+
+clear
+echo -e "$f REMOVING orphans... $r"
 sleep 1
 doas xbps-remove -oy
+
+clear
+echo -e "$f CLEARING cache... $r"
+sleep 1
 doas xbps-remove -O
 
 clear
 echo -e "$f CLEANING trash... $r"
 rm -r "$HOME"/.trash/*
-
-clear
-echo -e "$f REMOVING old kernels... $r"
-sleep 1
-doas vkpurge rm all
 
 clear
 echo -e "$f UPDATING tldr... $r"
@@ -37,6 +41,7 @@ clear
 echo -e "$f TRIMMING... $r"
 doas fstrim /
 doas fstrim /home
+doas fstrim /media/SSD-120G
 
 clear
 echo -e "\033[32;40m Putztag ist vorbei. $r"

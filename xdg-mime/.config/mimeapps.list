@@ -15,3 +15,4 @@ video/x-flv=mpv.desktop;
 video/x-matroska=mpv.desktop;
 x-scheme-handler/magnet=torrent.desktop;
 application/x.bittorrent=torrent.desktop;
+

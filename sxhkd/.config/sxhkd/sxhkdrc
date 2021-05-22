@@ -104,6 +104,6 @@ Print
 # screenshot - select frame
 Print + shift
     sleep 0.2; \
-    scrot -s -e 'mv $f ~/pictures/screenshots/'
-
+   # scrot --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'
+    scrot --line mode=edge,style=dash,width=3,color="red" --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'
 

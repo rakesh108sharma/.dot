@@ -1,11 +1,11 @@
 include /usr/share/nano/*.nanorc
-set smooth
+#set smooth #not working
 set autoindent
-set morespace
+#set morespace #not working
 set tabsize 4
 set tabstospaces
 set nowrap
-#set softwrap
+set softwrap
 set constantshow #display cursor position
 set suspend #allow nano to be suspended
 set nohelp 

@@ -9,9 +9,9 @@ export DISPLAY=:0.0
 
 herber "Trim         OR not to Trim?!" "(left-mouse) OR (right-mouse)" && exit 1
 
-fstrim / || herber "cannot trim   /"
-fstrim /home || herber "cannot trim   /home"
-fstrim /media/SSD-120G || herber "cannot trim   /media/SSD-120G"
+doas fstrim / || herber "cannot trim   /"
+doas fstrim /home || herber "cannot trim   /home"
+doas fstrim /media/SSD-120G || herber "cannot trim   /media/SSD-120G"
 
 herbe "trimming complete!"
 

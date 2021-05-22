@@ -8,6 +8,7 @@
 [ -f "$HOME"/.bash_exports ] && . "$HOME"/.bash_exports
 
 umask 027
+### export
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER=less
 export PAGER=less
@@ -34,7 +35,7 @@ PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
 shopt -s cdspell
 
 #####   A L I A S   #####
-# system
+### system
 alias zzz='sudo /usr/bin/zzz'
 alias rrr='sudo /usr/bin/reboot'
 #alias qqq='sudo poweroff'
@@ -46,7 +47,8 @@ alias sss='clear && cd /var/service/ && ls && sudo sv s /var/service/*'
 alias vsv='sudo vsv'
 alias doas='doas --'
 #alias resolv='sudo nano /etc/resolv.conf'
-# terminal
+
+### terminal
 alias ls='exa --color=always --group-directories-first'
 alias ll='exa -l --color=always --group-directories-first'
 alias la='exa -a --color=always --group-directories-first'
@@ -59,7 +61,8 @@ alias ~='cd ~'
 alias c='clear'
 alias _='sudo'
 alias error='echo -e "\033[5;31;40mERROR:\033[0m\033[31;40m"'
-# packet manager
+alias romy='cd ~/video/ROMY'
+### packet manager
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
 alias yyx='sudo xbps-install -uy xbps'
 #yys = function for searching packages
@@ -74,7 +77,7 @@ alias yyi='echo -e "sudo xbps-install\n" && sudo xbps-install'
 alias yyc='echo -e "sudo xbps-remove -o\n" && sudo xbps-remove -o'
 alias yycc='echo -e "sudo xbps-remove -O\n" && sudo xbps-remove -O'
 
-# other
+### other
 alias cat='bat --pager less'
 alias e='nano $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias v='vim $(fd . $HOME -H -E anaconda3/ | fzf)'
@@ -106,6 +109,7 @@ alias yt='youtube-dl -F'
 alias ytv='youtube-dl -f 22'
 alias yta='youtube-dl -f 140'
 alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
+alias chc='check_connections'
 # taskwarrior
 alias t='clear; task due.not:someday'
 alias tls='task ls due.not:someday'
