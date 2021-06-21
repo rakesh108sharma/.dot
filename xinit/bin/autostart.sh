@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/bin/env bash
 #
 # !! wird durch .xinitrc gestartet !!
 # do all "wanted" things at system start
@@ -14,7 +14,7 @@ pavucontrol-qt &
 
 picom -b &
 
-st &
+st -e /bin/zsh &
 #run darkhttpd ~/wiki/my_wiki/site/ --addr 192.168.1.22 --daemon
 
 sleep 2
@@ -22,8 +22,7 @@ sleep 2
 chromium &
 st -e system.sh &
 
-#volumeicon & (wird jetzt von sxhkd erledigt)
-#amixer set PCM 100%,100%   # max boost
+#volumeicon & (wird jetzt direkt in DWM geregelt)
 
 wallpapershow.sh &
 
@@ -34,12 +33,14 @@ tldr --update &
 xbps-query -Rs '' >"$HOME/voidpackages" &
 via -ro &
 
+devmon &
+
 sleep 1
 amixer set Master 20%
 mimic -t "All systems online"
 #jupyter-notebook &
 clipit &
-sxhkd &
+
 sudo killall ntpd
 
 doas /etc/zzz.d/resume/update &

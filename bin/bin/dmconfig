@@ -1,16 +1,30 @@
 #!/bin/bash
 
 choice=$(echo -e "\
-bash          @     $HOME/.bashrc
-zsh           @     $HOME/.zshrc
-xinitrc       @     $HOME/.xinitrc
-autostart     @     $HOME/bin/autostart.sh
-vim           @     $HOME/.vimrc
-lf            @     $HOME/.config/lf/lfrc
-mimeapps      @     $HOME/.config/mimeapps.list
+bash          @$HOME/.bashrc
+zsh           @$HOME/.zshrc
+profile       @$HOME/.profile
+inputrc       @$HOME/.inputrc
+xinitrc       @$HOME/.xinitrc
+autostart     @$HOME/bin/autostart.sh
+vim           @$HOME/.vimrc
+nano          @$HOME/.nanorc
+lf            @$HOME/.config/lf/lfrc
+mimeapps      @$HOME/.config/mimeapps.list
+sxhkd         @$HOME/.config/sxhkd/sxhkdrc
+lynx          @$HOME/.config/lynx/lynx.cfg
+dwm           @$HOME/.suckless/dwm/config.h
+transmission  @$HOME/.config/transmission-daemon/settings.json
 
-THIS-menu     @     $HOME/bin/my-menu2.sh" | dmenu -i -l 16 -p "EDIT")
+THIS-menu     @$HOME/bin/dmconfig" | dmenu -i -l 16 -p "EDIT")
 
-go=$(echo "$choice" | cut -d'@' -f2)
-[ -z "$go"] && exit 1
-st -e vim $go
+name=$(echo "$choice" | cut -d'@' -f1)
+file=$(echo "$choice" | cut -d'@' -f2)
+[ -z "$file" ] && exit 1
+
+st -e vim "$file"
+
+if [ "${name// /}" = "dwm" ]; then
+    cd "$HOME/.suckless/dwm" || exit
+    st -e bash
+fi

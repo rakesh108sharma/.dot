@@ -9,7 +9,7 @@
 
 umask 027
 ### export
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+#export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER=less
 export PAGER=less
 export EDITOR=nano
@@ -26,6 +26,7 @@ export GTK_IM_MODULE='ibus'
 export QT_IM_MODULE='ibus'
 export SDL_IM_MODULE='ibus'
 export XMODIFIERS='@im=ibus'
+export XDG_CONFIG_HOME="$HOME/.config"
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
@@ -36,6 +37,7 @@ shopt -s cdspell
 
 #####   A L I A S   #####
 ### system
+alias path='echo -e ${PATH//:/\\n} | less'
 alias zzz='sudo /usr/bin/zzz'
 alias rrr='sudo /usr/bin/reboot'
 #alias qqq='sudo poweroff'
@@ -99,6 +101,7 @@ alias wetter='curl -4 http://wttr.in/Eupen'
 #alias yv='youtube-viewer --resolution=720p -C'
 alias n='dnote'
 alias f='sudo fd'
+alias ?='duck'
 alias wiki-='taizen --lang=en'
 alias wiki-de='taizen --lang=de'
 alias wiki-es='taizen --lang=es'
@@ -252,6 +255,10 @@ mman() {
             "$NOTE" | groff -T utf8 -man | most
         ;;
     esac
+}
+
+vic() {
+    vim-huge $(which $1)
 }
 
 #####   END FUNCTIONS   #####

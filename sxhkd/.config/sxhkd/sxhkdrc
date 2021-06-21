@@ -20,11 +20,13 @@ super + o; n
 super + o; v
     $TERMINAL -e vim
 
-super + o; {b, x, a, k}
+super + o; {b, z, x, a, k, v}
     $TERMINAL -e vim {~/.bashrc, \
+                      ~/.zshrc
                       ~/.xinitrc, \ 
                       ~/bin/autostart.sh, \
-                      ~/.config/sxhkd/sxhkdrc}
+                      ~/.config/sxhkd/sxhkdrc, \
+                      ~/.vimrc}
 
 
 # APPLICATIONS
@@ -35,14 +37,9 @@ super + Return; Return
 XF86HomePage
     $TERMINAL
 
-super + Return; super + q
-    qterminal
+super + Return; super + Return 
+    $TERMINAL -e /bin/zsh
 
-# anki
-super + Return; a
-    $TERMINAL -e anki
-XF86Tools; a
-    $TERMINAL -e anki
 
 # browser minimal
 super + Return; b
@@ -99,11 +96,12 @@ ctrl + shift + f
 
 # screenshot - complete sBhcreen
 Print
-    scrot -e 'mv $f ~/pictures/screenshots/'
+    scrot -e 'mv $f ~/pictures/screenshots/'; \
+    mimic -t "click"
 
 # screenshot - select frame
-Print + shift
-    sleep 0.2; \
-   # scrot --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'
-    scrot --line mode=edge,style=dash,width=3,color="red" --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'
-
+#scrot --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'
+Print + shift    
+    sleep 0.5; \
+    scrot --line mode=edge,style=dash,width=3,color="red" --quality=100 --select --exec 'mv $f ~/pictures/screenshots/'; \
+    mimic -t "click"

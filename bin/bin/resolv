@@ -19,6 +19,8 @@ choice=$(echo "\
 8.8.8.8
 " | dmenu -p "actual DNS: ${dns}   --   choose new DNS ==> ")
 
+[ -z "$choice" ] && exit 1
+
 # set new DNS
 echo "nameserver ${choice}" | sudo tee /etc/resolv.conf || herber "ERROR"
 

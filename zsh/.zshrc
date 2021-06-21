@@ -5,12 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+setopt nohup
+
 #export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export EDITOR=nano
 export MANPAGER=most
 export PAGER=bat
 export SHELL=/bin/zsh
 export TERMINAL=st
+export XDG_CONFIG_HOME="$HOME/.config"
 
 ### ALIAS - suffix
 alias -s {mp3,mp4,mkv,webm,m3u}=mpv
@@ -36,9 +39,12 @@ alias yycc='echo -e "sudo xbps-remove -O\n" && sudo xbps-remove -O'
 ### ALIAS - divers
 alias d='cd ~/downloads/torrents/'
 alias romy='cd ~/video/ROMY'
+alias maha='cd ~/Dokumente/maharaj'
 alias e='nano $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias v='vim $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias vv='vim-huge'
+alias ww='vim-huge $HOME/vimwiki/index.md'
+alias c='dmconfig'
 alias nn='newsboat'
 alias pp='castero'
 alias rr='curseradio'
@@ -63,11 +69,11 @@ yss() {
 }
 
 yyii() {
-    sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
+    sudo xbps-install "$(xbps-query -Rs '' | fzf -i | awk '{ print $2}')"
 }
 
 yyrr() {
-    sudo xbps-remove "$(xbps-query -s '' | fzy -l 15 | awk '{ print $2}')"
+    sudo xbps-remove "$(xbps-query -s '' | fzf -i | awk '{ print $2}')"
 }
 
 

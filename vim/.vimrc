@@ -88,9 +88,16 @@ vnoremap ää <ESC>
 inoremap äää <ESC>:
  
 nnoremap <leader>q :q<CR>   " normal mode quit
-nnoremap <leader>w :w<CR>
-inoremap äw <ESC>:w<CR>    " insert mode write 
-inoremap äq <ESC>:wq<CR>  " insert mode write & quit 
+nnoremap <leader>w :w<CR>   " normal mode write
+nnoremap <leader>qq :q!<CR> " normal mode force quit
+inoremap äw <ESC>:w<CR>  " insert mode write 
+inoremap äq <ESC>:q<CR>     " insert mode quit 
+inoremap äwq <ESC>:wq<CR>   " insert mode write & quit
+inoremap äqq <ESC>:q!<CR>   " insert mode force quit
+
+" insert a time stamp
+nnoremap <leader>D "=strftime('%y%m%d%H%M')<CR>P
+inoremap ääd <C-R>=strftime('%y%m%d%H%M')<CR>
 
 " fast editing AND reloading of vimrc configs
 map <leader>e :e! ~/.vimrc<CR>
@@ -185,6 +192,13 @@ let g:vimwiki_list = [
             \{'path': '~/vimwiki/python/', 'syntax': 'markdown', 'ext': '.md'},
             \{'path': '~/vimwiki/linux/', 'syntax': 'markdown', 'ext': '.md'},
             \]
+
+"hi VimwikiHeader1 guifg=#FF0000
+"hi VimwikiHeader2 guifg=#00FF00
+"hi VimwikiHeader3 guifg=#0000FF
+"hi VimwikiHeader4 guifg=#FF00FF
+"hi VimwikiHeader5 guifg=#00FFFF
+"hi VimwikiHeader6 guifg=#FFFF00
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DIVERS 
