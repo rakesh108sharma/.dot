@@ -27,7 +27,7 @@ st -e system.sh &
 wallpapershow.sh &
 
 # hides the mouse when writing
-xbanish &
+#xbanish &
 
 tldr --update &
 xbps-query -Rs '' >"$HOME/voidpackages" &

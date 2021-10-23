@@ -4,7 +4,6 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 setopt nohup
 
 #export PATH=$HOME/bin:$HOME/.local/bin:$PATH
@@ -43,17 +42,19 @@ alias maha='cd ~/Dokumente/maharaj'
 alias e='nano $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias v='vim $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias vv='vim-huge'
-alias ww='vim-huge $HOME/vimwiki/index.md'
+alias ww='vim-huge $HOME/wiki_test/INDEX.md'
 alias c='dmconfig'
 alias nn='newsboat'
 alias pp='castero'
 alias rr='curseradio'
 alias yt='youtube-dl -F'
 alias ytv='youtube-dl -f 22'
+alias ytvv='youtube-dl -f 137+140'
 alias yta='youtube-dl -f 140'
 alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 alias zzz='sudo zzz'
 alias df='df -h'
+alias alp-server='wol 00:18:71:83:50:AC'
 ### FUNCTIONS
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"
@@ -84,7 +85,6 @@ antigen use oh-my-zsh
 # plugins with oh-my-zsh
 antigen bundle git
 antigen bundle pip
-antigen bundle thefuck # ??
 antigen bundle extract
 antigen bundle fd
 antigen bundle nmap
@@ -110,3 +110,5 @@ antigen apply
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet

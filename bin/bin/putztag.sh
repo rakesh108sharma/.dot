@@ -42,6 +42,7 @@ echo -e "$f TRIMMING... $r"
 doas fstrim /
 doas fstrim /home
 doas fstrim /media/SSD-120G
+doas fstrim /media/SSD-240G
 
 clear
 echo -e "\033[32;40m Putztag ist vorbei. $r"
