@@ -7,7 +7,8 @@ fi
 setopt nohup
 
 #export PATH=$HOME/bin:$HOME/.local/bin:$PATH
-export EDITOR=nano
+export PATH=$PATH:~/.roswell/bin
+export EDITOR=micro
 export MANPAGER=most
 export PAGER=bat
 export SHELL=/bin/zsh
@@ -44,8 +45,9 @@ alias v='vim $(fd . $HOME -H -E anaconda3/ | fzf)'
 alias vv='vim-huge'
 alias ww='vim-huge $HOME/wiki_test/INDEX.md'
 alias c='dmconfig'
+alias ff='lf'
 alias nn='newsboat'
-alias pp='castero'
+alias pp='podget'
 alias rr='curseradio'
 alias yt='youtube-dl -F'
 alias ytv='youtube-dl -f 22'
@@ -54,7 +56,9 @@ alias yta='youtube-dl -f 140'
 alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 alias zzz='sudo zzz'
 alias df='df -h'
+alias duu='ncdu -e'
 alias alp-server='wol 00:18:71:83:50:AC'
+alias guile='rlwrap guile'
 ### FUNCTIONS
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"

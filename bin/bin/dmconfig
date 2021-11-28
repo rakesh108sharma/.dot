@@ -25,10 +25,9 @@ file=$(echo "$choice" | cut -d'@' -f2)
 [ -z "$file" ] && exit 1
 
 if [ "${name[1]}" = "X" ]; then
-    herber "NO"
+    herber "using SUDO"
     sudo st -e vim $file
 else
-    herber "YES"
     st -e vim "$file"
 fi
 
