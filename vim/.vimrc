@@ -11,6 +11,7 @@ set updatetime=3000     " wait #milliseconds before saving swap
 set undolevels=200  
 set lazyredraw          " redraw only when we need to
 
+
 " no need for swap or backup since I use 'undodir'
 set noswapfile
 set nobackup

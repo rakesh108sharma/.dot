@@ -134,7 +134,7 @@ map gc cd ~/.config
 map gm cd /media
 map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
 map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
-map ga cd ~/audio/music/musicbox
+map ga cd ~/audio
 map gv cd ~/video
 
 # CONFIG-section

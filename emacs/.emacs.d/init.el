@@ -1,3 +1,4 @@
+;;; INITIAL SETUP
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -7,17 +8,16 @@
 
 ;(menu-bar-mode -1)          ; Disable the menu bar
 
-;; Set up the visible bell
-(setq visible-bell t)
+(setq visible-bell t)       ; Set up the visible bell
 
 (set-face-attribute 'default nil :font "Fira Code Retina" :height 120)
+(column-number-mode)
 
-;(load-theme 'wombat)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Initialize package sources [[
+;;; Initialize PACKAGE sources [[
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -34,9 +34,21 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
-;; Initialize package sources ]]
+;;; END Initialize package sources ]]
 
-(use-package command-log-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package command-log-mode)    ; gives some info in the command line
+
+;;; counsel & ivy improve some commands
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; don't start searches with ^
 
 (use-package ivy
   :diminish
@@ -56,13 +68,42 @@
   :init
   (ivy-mode 1))
 
+;; gives a definition of possible commands
+(use-package ivy-rich
+  :init (ivy-rich-mode 1))
+;;; END ivy & counsel
+
+;; describes which keys are available
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.8))
+
+;; improved HELP for emacs
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(use-package gruvbox-theme
-  :config (load-theme 'gruvbox t))
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-palenight t)
+  (doom-themes-visual-bell-config))
+
+;(use-package gruvbox-theme
+;  :config (load-theme 'gruvbox t))
 
 ;;; UNDO
 ;; vim style undo
@@ -73,10 +114,11 @@
   :demand t
   :bind (("<escape>" . keyboard-escape-quit))
   :init
+  (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   ;(setq evil-undo-system 'undo-fu)
   :config
-  (evil-mode 1))
+  (evil-mode 1)) 
 
 ;;; vim bindings everywhere else
 (use-package evil-collection
@@ -84,6 +126,29 @@
   :config
   (setq evil-want-integration t)
   (evil-collection-init))
+
+;;; modules for projects
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/scripting")
+    (setq projectile-project-search-path '("~/scripting")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;(use-package evil-magit
+;  :after magit)
 
 (use-package howdoi)
 
@@ -96,10 +161,10 @@
     ("Radio Contact" . "http://audiostream.rtl.be/contactfr")
     ("Ujala"         . "http://stream2.ujala.nl/stream/2/listen.mp3")))
 
-
 ;;; LISPs
 (use-package racket-mode)
-
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -112,7 +177,8 @@
    '(("Emacs Wiki" "https://www.emacswiki.org/emacs?action=rss" nil 3600)
      ("Tagesschau (german)" "http://www.tagesschau.de/newsticker.rdf" nil 1800)))
  '(package-selected-packages
-   '(org-roam racket-mode eradio howdoi gruvbox-theme evil-collection evil use-package ivy doom-themes doom-modeline command-log-mode)))
+   '(evil-magit magit counsel-projectile projectile helpful counsel ivy-rich which-key rainbow-delimiters org-roam racket-mode eradio howdoi gruvbox-theme evil-collection evil use-package ivy doom-themes doom-modeline command-log-mode))
+ '(safe-local-variable-values '((projectile-project-run-cmd . "racket"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
