@@ -58,7 +58,6 @@ alias zzz='sudo zzz'
 alias df='df -h'
 alias duu='ncdu -e'
 alias alp-server='wol 00:18:71:83:50:AC'
-alias guile='rlwrap guile'
 ### FUNCTIONS
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"

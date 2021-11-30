@@ -143,12 +143,25 @@
   :config (counsel-projectile-mode))
 
 (use-package magit
-  :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 ;(use-package evil-magit
 ;  :after magit)
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))
+
+(with-eval-after-load 'org-faces (dolist (face '((org-level-1 . 1.2)
+		(org-level-2 . 1.1)
+		(org-level-3 . 1.05)
+		(org-level-4 . 1.0)
+		(org-level-5 . 1.1)
+		(org-level-6 . 1.1)
+		(org-level-7 . 1.1)
+		(org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face))))
 
 (use-package howdoi)
 
@@ -177,7 +190,7 @@
    '(("Emacs Wiki" "https://www.emacswiki.org/emacs?action=rss" nil 3600)
      ("Tagesschau (german)" "http://www.tagesschau.de/newsticker.rdf" nil 1800)))
  '(package-selected-packages
-   '(evil-magit magit counsel-projectile projectile helpful counsel ivy-rich which-key rainbow-delimiters org-roam racket-mode eradio howdoi gruvbox-theme evil-collection evil use-package ivy doom-themes doom-modeline command-log-mode))
+   '(org-bullets evil-magit magit counsel-projectile projectile helpful counsel ivy-rich which-key rainbow-delimiters org-roam racket-mode eradio howdoi gruvbox-theme evil-collection evil use-package ivy doom-themes doom-modeline command-log-mode))
  '(safe-local-variable-values '((projectile-project-run-cmd . "racket"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
