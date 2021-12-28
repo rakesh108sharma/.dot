@@ -60,10 +60,10 @@ echo
 
 # calendar
 echo
-when
+#when
 echo
-task list due.not:someday
-read -p "          press <ENTER>"
+#task list due.not:someday
+#read -p "          press <ENTER>"
 
 # THE END
 echo

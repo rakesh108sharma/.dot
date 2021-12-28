@@ -4,7 +4,7 @@
 # do all "wanted" things at system start
 
 #xrandr --output HDMI-A-0 --mode 1280x720 &
-sudo ntpd -s &
+#sudo ntpd -s &
 setxkbmap de
 
 xset -dpms # standby - suspend -  off
@@ -40,7 +40,8 @@ amixer set Master 20%
 mimic -t "All systems online"
 #jupyter-notebook &
 clipit &
+emacs --daemon
 
-sudo killall ntpd
+#sudo killall ntpd
 
 doas /etc/zzz.d/resume/update &
