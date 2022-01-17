@@ -58,7 +58,9 @@ alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 alias zzz='sudo zzz'
 alias df='df -h'
 alias duu='ncdu -e'
-alias alp-server='wol 00:18:71:83:50:AC'
+alias wolopenbox="wol 00:26:2d:7c:3a:d3"
+alias wololdman='wol 00:18:71:83:50:ac'
+
 ### FUNCTIONS
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"

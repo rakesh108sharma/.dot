@@ -1,0 +1,71 @@
+! in order to reload this file:
+! xrdb -load ~/.Xresources
+
+! special colors
+*.foreground:  #c0c5ce
+*.background:  #2b303b
+*.cursorColor:  #c0c5ce
+! black
+*.color0:      #2b303b
+*.color8:      #65737e
+! red
+*.color1:      #bf616a
+*.color9:      #bf616a
+! green
+*.color2:      #a3be8c
+*.color10:     #a3be8c
+! yellow
+*.color3:      #ebcb8b
+*.color11:     #ebcb8b
+! blue
+*.color4:      #8fa1b3
+*.color12:     #8fa1b3
+! magenta
+*.color5:      #b48ead
+*.color13:     #b48ead
+! cyan
+*.color6:      #96b5b4
+*.color14:     #96b5b4
+! white
+*.color7:      #c0c5ce
+*.color15:     #eff1f5
+
+URxvt*scrollBar:         true
+URxvt*scrollBar_right:   true
+
+URxvt*transparent:       false
+
+URxvt*depth: 32
+URxvt.background: [90]#2b303b
+
+URxvt.font: xft:Hack:pixelsize=16
+URxvt.letterSpace: 0
+
+*antialias:  true
+*autohint:   true
+
+XTerm.termName: xterm-256color
+XTerm*vt100.geometry: 130x50
+XTerm*faceName: Hack
+XTerm*faceSize: 14
+
+Xterm*facesize1: 8
+Xterm*facesize2: 10
+Xterm*facesize3: 12
+Xterm*facesize4: 14
+Xterm*facesize5: 16
+Xterm*facesize6: 18
+
+Xterm*vt100.scrollBar: false
+XTerm*scrollTtyOutput: false
+XTerm*savelines: 15000
+XTerm*highlightSelection: true
+XTerm*trimSelection: true
+
+XTerm*vt100.translations: #override \n\
+  Ctrl <Key>-: smaller-vt-font() \n\
+  Ctrl <Key>+: larger-vt-font() \n\
+  Ctrl <Key>0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+ 
