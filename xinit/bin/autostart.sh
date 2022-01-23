@@ -41,7 +41,7 @@ mimic -t "All systems online"
 #jupyter-notebook &
 clipit &
 emacs --daemon
-
+xrdb -load .Xresources 
 #sudo killall ntpd
 
 doas /etc/zzz.d/resume/update &
