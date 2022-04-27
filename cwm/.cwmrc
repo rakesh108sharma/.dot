@@ -17,12 +17,18 @@ bind-key 4-3 group-only-3
 bind-key 4-4 group-only-4
 bind-key 4-5 group-only-5
 bind-key 4-6 group-only-6
+bind-key 4-7 group-only-7
+bind-key 4-8 group-only-8
+bind-key 4-9 group-only-9
 bind-key 4S-1 window-movetogroup-1
 bind-key 4S-2 window-movetogroup-2
 bind-key 4S-3 window-movetogroup-3
 bind-key 4S-4 window-movetogroup-4
 bind-key 4S-5 window-movetogroup-5
 bind-key 4S-6 window-movetogroup-6
+bind-key 4S-7 window-movetogroup-7
+bind-key 4S-8 window-movetogroup-8
+bind-key 4S-9 window-movetogroup-9
 
 bind-key 4-Right window-cycle
 bind-key 4-Left  window-rcycle
@@ -37,20 +43,29 @@ bind-key 4-m window-maximize
 bind-key 4-v window-vtile
 bind-key 4-x window-close
 
-bind-key 4-Return terminal
+bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
+bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
+bind-key 4-Return "st -e zsh"
  
 bind-key 4-w menu-window     # w window       
 bind-key 4-a menu-cmd        # a app        
 bind-key 4-p menu-exec       # program       
-bind-key 4-s menu-ssh         
+bind-key 4-s menu-ssh        # ssh         
 
-bind-key 4M-p  "dmenu_run"   # p program
+bind-key 4M-p  "dmenu_run"   # program dmenu
+
+bind-key 4M-t  "xterm -e top"
+bind-key 4M-f  "xterm -e lf"
+bind-key 4M-m  "xterm -e micro"
+bind-key 4M-v  "xterm -e vim"
+bind-key 4M-w  "xterm -e vim-huge /home/maya/vimwiki/INDEX.md"
 
 command chrome      "chrome --enable-unveil"
-command terminal    "qterminal"
-command top         "xterm -e top"
-command micro       "xterm -e micro"
+command terminal    "qterminal -e zsh"
+command tt          "xterm -e top"
+command ee          "xterm -e micro"
 command mpv         "xterm -e mpv"
 command links       "xterm -e links duckduckgo.com"
+command ff          "xterm -e lf" 
 
 autogroup 2 "chromium-browser"

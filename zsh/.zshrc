@@ -19,7 +19,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 alias -s {mp3,mp4,mkv,webm,m3u}=mpv
 alias -s pdf=mupdf
 alias -s md=vim
-alias -s {txt,sh}=nano
+alias -s {txt,sh}=micro
 
 ### ALIAS - packet manager
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
@@ -50,12 +50,13 @@ alias ff='lf'
 alias nn='newsboat'
 alias pp='podget'
 alias rr='curseradio'
-alias yt='youtube-dl -F'
-alias ytv='youtube-dl -f 22'
-alias ytvv='youtube-dl -f 137+140'
-alias yta='youtube-dl -f 140'
-alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
+alias yt='yt-dlp -F'
+alias ytv='yt-dlp -f 22'
+alias ytvv='yt-dlp -f 137+140'
+alias yta='yt-dlp -f 140'
+alias yta3='yt-dlp -x --audio-format mp3 --prefer-ffmpeg'
 alias zzz='sudo zzz'
+alias ZZZ='sudo ZZZ'
 alias df='df -h'
 alias duu='ncdu -e'
 alias wolopenbox="wol 00:26:2d:7c:3a:d3"

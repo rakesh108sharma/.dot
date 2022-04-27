@@ -7,11 +7,10 @@
 #     - no DNS
 #     - no default route defined
 
-
-if ping -c 3 127.0.0.1 >/dev/null; then
-    if ping -c 3 192.168.1.1 >/dev/null; then
-        if ping -c 3 8.8.8.8 >/dev/null; then
-            if ping -c 3 google.com >/dev/null; then
+if ping -c 3 127.0.0.1 &>/dev/null; then
+    if ping -c 3 192.168.1.1 &>/dev/null; then
+        if ping -c 3 8.8.8.8 &>/dev/null; then
+            if ping -c 3 google.com &>/dev/null; then
                 herbe "NETWORK seems   OK"
             else
                 herber "CANNOT resolve" "check /etc/resolv.conf"
@@ -29,10 +28,11 @@ else
     herber "NO localhost" "reboot"
 fi
 
-
-if [[ $(ip route | head -n 1 | cut -d' ' -f1) != 'default' ]]; then 
+#if [[ $(ip route | head -n 1 | cut -d' ' -f1) != 'default' ]]; then
+#    herber "NO default route" "sudo ip route add default via 192.168.1.1"
+#fi
+route=$(ip route)
+[[ "${route%%\ *}" != 'default' ]] &&
     herber "NO default route" "sudo ip route add default via 192.168.1.1"
-fi
-
 
 exit 0

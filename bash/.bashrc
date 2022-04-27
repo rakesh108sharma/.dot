@@ -30,8 +30,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
-PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
-#PS1='$(slcp $COLUMNS $?)'
+#PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
+PS1='$(slcp $COLUMNS $?)'
 
 shopt -s cdspell
 
@@ -292,4 +292,4 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 
 complete -C /home/maya/bin/mc mc
 
-source <(cod init $$ bash)
+#source <(cod init $$ bash)
