@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# backup my most important folders
+
+
+rsync -ruLv "$HOME"/bin /media/SSD-120G/backups/
+rsync -ruLv "$HOME"/vimwiki /media/SSD-120G/backups/
+rsync -ruLv "$HOME"/.suckless /media/SSD-120G/backups/
+rsync -ruLv "$HOME"/.dot /media/SSD-120G/backups/
+rsync -ruLv "$HOME"/Desktop/Passwörter.kdbx /media/SSD-120G/backups/

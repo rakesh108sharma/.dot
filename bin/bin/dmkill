@@ -1,0 +1,23 @@
+#!/bin/env bash
+#
+# use dmenu to select a process and kill it
+
+# dmenu: select a process
+process=$(ps -u $USER -o comm,%mem,pid |
+    sed -n '1!p' |   # delete first line
+    sort -b -k2 -r | # remove blank, sort by 2nd field, reverse the list
+    dmenu -i -l 15)  # case insensitive
+
+# if empty exit
+[ -z "$process" ] && exit 1
+
+#pid=$(echo "$process" | awk '{print $1}')
+#name=$(echo "$process" | awk '{print $3}')
+
+pid="${process##*\ }"
+name="${process%%\ *}"
+
+sudo kill -15 "$pid" 2>/dev/null
+herber "KILLING process:" "$pid $name"
+
+exit 0
