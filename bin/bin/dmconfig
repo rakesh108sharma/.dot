@@ -36,7 +36,7 @@ else
 fi
 
 # if the config of DWM has been changed then enter the folder and drop me into a shell
-if [ "${name// /}" = "dwm" ]; then
+if [ "${name// /}" == "dwm" ]; then
     cd "$HOME/.suckless/dwm" || exit
     st -e bash
 fi
