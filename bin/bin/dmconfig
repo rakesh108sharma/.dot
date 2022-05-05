@@ -16,7 +16,9 @@ lynx          @$HOME/.config/lynx/lynx.cfg
 dwm           @$HOME/.suckless/dwm/config.h
 transmission  @$HOME/.config/transmission-daemon/settings.json
 
-Xfstab        @/etc/fstab
+X fstab       @/etc/fstab
+X resolv      @/etc/resolv.conf
+X crontab     @/etc/crontab
 
 THIS-menu     @$HOME/bin/dmconfig" | dmenu -i -l 16 -p "EDIT")
 

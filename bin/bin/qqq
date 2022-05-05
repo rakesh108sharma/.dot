@@ -8,13 +8,11 @@ amixer set Master 20%
 
 mimic "system halt!"
 
-jupyter-notebook stop >/dev/null 2>&1
-
 clear
 
 vnstat
 
-sleep 6
+sleep 10
 
 sudo poweroff
 

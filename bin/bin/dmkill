@@ -3,10 +3,10 @@
 # use dmenu to select a process and kill it
 
 # dmenu: select a process
-process=$(ps -u $USER -o comm,%mem,pid |
+process=$(ps -u "$USER" -o comm,%mem,pid |
     sed -n '1!p' |   # delete first line
     sort -b -k2 -r | # remove blank, sort by 2nd field, reverse the list
-    dmenu -i -l 15)  # case insensitive
+    dmenu -i -l 20)  # case insensitive
 
 # if empty exit
 [ -z "$process" ] && exit 1

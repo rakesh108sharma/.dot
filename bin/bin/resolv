@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# choose DNS server AND write to resolf.conf
+# choose DNS server AND write to resolv.conf
 
 ### functions
 get_dns() {
@@ -16,6 +16,7 @@ choice=$(echo "\
 127.0.0.1
 192.168.1.1
 1.1.1.1
+9.9.9.9
 8.8.8.8
 " | dmenu -p "actual DNS: ${dns}   --   choose new DNS ==> ")
 

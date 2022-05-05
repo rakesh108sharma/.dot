@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# control services/daemons with dmenu
+# actions: start/stop/restart/enable/disable SERVICE
+# dangerous actions: create/destroy SERVICE links
+
+service=$(sudo vsv | dmenu -i -p "service:" | cut -d ' ' -f 3)
+#service=${service#* }
+#service=${service#* }
+#service=${service%% *}
+[ -z "$service" ] && exit 1
+
+action=$(echo -e "\
+start
+stop
+restart
+
+enable
+disable
+
+create
+destroy
+" | dmenu -i -p "${service}: ")
+[ -z "$action" ] && exit 1
+
+case "$action" in
+"create")
+    daemon=$(find /etc/sv/ -maxdepth 1 | dmenu -i -p "create?")
+    if [[ -z $daemon ]]; then
+        exit 1
+    elif [[ $daemon == "/etc/sv/" ]]; then
+        herber "ERROR" "Will not link /etc/sv"
+        exit 2
+    else
+        sudo ln -s "${daemon}" "/var/service/" &>/dev/null
+        herbe "Link CREATED for:" "$daemon"
+    fi
+    ;;
+"destroy")
+    daemon=$(find /var/service/ | dmenu -i -p "destroy?")
+    if [[ -z $daemon ]]; then
+        exit 1
+    elif [[ $daemon == "/var/service/" ]]; then
+        herber "ERROR" "Will not destroy /var/service/"
+        exit 2
+    else
+        sudo rm -rf "${daemon:-ERROR}" &>/dev/null
+        herbe "Link REMOVED:" "${daemon:-ERROR}"
+    fi
+    ;;
+*)
+    if sudo vsv "$action" "$service" &>/dev/null; then
+        status=$(sudo sv status "$service")
+        herbe "$status"
+    else
+        herber "FAILED: " "$action $service"
+        exit 3
+    fi
+    ;;
+esac
+
+exit 0

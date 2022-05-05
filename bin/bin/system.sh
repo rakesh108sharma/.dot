@@ -22,7 +22,9 @@ read -p "          press <ENTER>"
 clear
 
 # network
-ip a
+ip l
+echo
+ip a show enp37s0
 echo
 echo
 ip r
@@ -40,7 +42,7 @@ cat /etc/resolv.conf
 echo
 
 echo "          NMAP"
-nmap 192.168.1.22 | grep open
+nmap 192.168.1.11 | grep open
 echo
 
 echo "          NETSTAT"
@@ -50,7 +52,7 @@ clear
 
 # firewall
 echo "          FIREWALL"
-doas iptables -L -v
+doas iptables -L -v | less
 read -p "          press <ENTER>"
 clear
 

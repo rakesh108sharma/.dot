@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+
+choice=$(echo "\
+suspend
+poweroff
+reboot
+hibernate
+logout" | dmenu -i -p "POWER")
+[ -z "$choice" ] && exit 1
+
+case "$choice" in
+"suspend")
+    amixer set Master 20%
+    sudo zzz
+    ;;
+"poweroff")
+    amixer set Master 20%
+    mimic "system halt!"
+    st -e vnstat
+    sleep 10
+    sudo poweroff
+    ;;
+"reboot")
+    sudo reboot
+    ;;
+"hibernate")
+    amixer set Master 20%
+    sudo ZZZ
+    ;;
+"logout")
+    amixer set Master 20%
+    pgrep pavucontrol &>/dev/null && pkill pavucontrol
+    pgrep picom &>/dev/null && pkill picom
+    pgrep wallpaper &>/dev/null && pkill wallpaper
+    pgrep xbanish &>/dev/null && pkill xbanish
+    pgrep clip &>/dev/null && pkill clip
+    pgrep devmon &>/dev/null && pkill devmon
+    pgrep Xorg &>/dev/null && pkill Xorg
+    ;;
+esac
+
+exit 0

@@ -31,12 +31,14 @@ xbps-query -Rs '' >"$HOME/voidpackages" &
 #via -ro &
 
 devmon &
+#scrond &
 
 sleep 1
 amixer set Master 20%
 mimic -t "All systems online"
 clipit &
 #emacs --daemon
-xrdb -load .Xresources 
+xrdb -load .Xresources
 
+check_connections &
 doas /etc/zzz.d/resume/update &

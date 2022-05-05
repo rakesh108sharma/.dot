@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+
+
+action=$(echo "\
+add
+delete
+" | dmenu -i -p "action?")
+[ -z "$action" ] && exit 1
+
+
+
+case "$action" in
+    "add") 
+        packages=$(xbps-query -Rs '')
+        package=$(echo "$packages" | dmenu -i | cut -d' ' -f2)
+        [ -z "$package" ] && exit 1
+        sudo xbps-install -y "$package" || herber "ERROR" ; exit 1
+        herbe "$package"  " "  "   INSTALLED"
+        ;;
+    "delete")
+        packages=$(xbps-query -s '')
+        package=$(echo "$packages" | cut -d' ' -f2- | dmenu -i)
+        [ -z "$package" ] && exit 1
+        package=${package%% *}
+        sudo xbps-remove -y "$package"  ||  herber "ERROR" ; exit 1 
+        herbe "$package"  " "  "   DELETED"
+        ;; 
+esac
+    
+
+exit 0

@@ -10,9 +10,9 @@
 umask 027
 ### export
 #export PATH=$HOME/bin:$HOME/.local/bin:$PATH
-export MANPAGER=less
+export MANPAGER=most
 export PAGER=less
-export EDITOR=nano
+export EDITOR=micro
 export BROWSER=chromium
 export HISTSIZE=10000
 export HISTFILESIZE=10000
@@ -30,8 +30,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
-#PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
-PS1='$(slcp $COLUMNS $?)'
+PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
+#PS1='$(slcp $COLUMNS $?)'
 
 shopt -s cdspell
 
@@ -64,6 +64,7 @@ alias c='clear'
 alias _='sudo'
 alias error='echo -e "\033[5;31;40mERROR:\033[0m\033[31;40m"'
 alias romy='cd ~/video/ROMY'
+
 ### packet manager
 alias yyu='echo -e "sudo xbps-install -Su\n" && sudo xbps-install -Su'
 alias yyx='sudo xbps-install -uy xbps'
@@ -114,6 +115,7 @@ alias ytv='youtube-dl -f 22'
 alias yta='youtube-dl -f 140'
 alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 alias chc='check_connections'
+
 # taskwarrior
 alias t='clear; task due.not:someday'
 alias tls='task ls due.not:someday'
@@ -165,8 +167,14 @@ yss() {
     ag --nonumber "$1" "$HOME/voidpackages" | most
 }
 
+#yyii() {
+#    sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
+#}
+
 yyii() {
-    sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
+    choice=$(xbps-query -Rs '' | dmenu)
+    choice="${choice#* }"
+    sudo xbps-install "${choice%% *}"
 }
 
 yyrr() {
@@ -240,7 +248,7 @@ mman() {
         ${EDITOR:-vim} "$NOTE"
         ;;
     *)
-        TITLE="$(echo $1 | sed 's/[a-z]/\U&/g')"
+        TITLE="${1^^}"
         SECTION="my manpages"
         AUTHOR="Axel"
         DATE="$(date +'%B %d, %Y' -r "$NOTE")"
@@ -259,7 +267,11 @@ mman() {
 }
 
 vic() {
-    vim-huge $(which $1)
+    vim-huge $(command -v "$1")
+}
+
+cheat() {
+    curl cheat.sh/"$1"
 }
 
 #####   END FUNCTIONS   #####

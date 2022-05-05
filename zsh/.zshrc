@@ -61,7 +61,6 @@ alias df='df -h'
 alias duu='ncdu -e'
 alias wolopenbox="wol 00:26:2d:7c:3a:d3"
 alias wololdman='wol 00:18:71:83:50:ac'
-
 ### FUNCTIONS
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"
@@ -84,7 +83,9 @@ yyrr() {
     sudo xbps-remove "$(xbps-query -s '' | fzf -i | awk '{ print $2}')"
 }
 
-
+cheat() {
+    curl cheat.sh/"$1"
+}
 
 source ~/bin/antigen.zsh
 antigen use oh-my-zsh
