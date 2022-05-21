@@ -19,6 +19,7 @@ transmission  @$HOME/.config/transmission-daemon/settings.json
 X fstab       @/etc/fstab
 X resolv      @/etc/resolv.conf
 X crontab     @/etc/crontab
+X hosts       @/etc/hosts
 
 THIS-menu     @$HOME/bin/dmconfig" | dmenu -i -l 16 -p "EDIT")
 
