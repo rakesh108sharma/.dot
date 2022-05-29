@@ -34,6 +34,8 @@ PS1="\n${cyan}\h: ${reset_color} ${yellow}\w\n${reset_color}-> "
 #PS1='$(slcp $COLUMNS $?)'
 
 shopt -s cdspell
+shopt -s autocd
+shopt -s direxpand
 
 #####   A L I A S   #####
 ### system
@@ -52,8 +54,8 @@ alias doas='doas --'
 
 ### terminal
 alias ls='exa --color=always --group-directories-first'
-alias ll='exa -l --color=always --group-directories-first'
-alias la='exa -a --color=always --group-directories-first'
+alias ll='exa -lg --color=always --group-directories-first --git --icons'
+alias la='exa -a --color=always --group-directories-first --git --icons'
 alias lt='exa -aT --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 alias ..='cd ..'
@@ -97,7 +99,8 @@ alias fgrep='fgrep --color=auto'
 alias qmv='qmv --editor=vim --format=destination-only'
 alias qcp='qcp -e vim'
 alias du='du -h | sort -h | tail -n 20'
-alias df='df -h | grep /dev/sd | sort -k 1'
+#alias df='df -h | grep /dev/sd | sort -k 1'
+alias df='df -h | tail +2 | grep -Ev "tmpfs|boot|group" | sort -k 6'
 alias mplayer='mplayer -af volnorm'
 alias wetter='curl -4 http://wttr.in/Eupen'
 #alias yv='youtube-viewer --resolution=720p -C'

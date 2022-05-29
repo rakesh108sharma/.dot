@@ -45,6 +45,8 @@ cmd open ${{
         text/*) $EDITOR $fx;;
         video/*) mpv $fx;;
         audio/*) mpv $fx;;
+        image/*) sxiv $fx;;
+        *pdf) mupdf $fx;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}

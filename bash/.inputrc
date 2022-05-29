@@ -21,5 +21,8 @@ set enable-keypad on
 "\ec": 'qcp \015'
 "\el": 'lf \015'
 "\ey": 'lf ~/scripting/learn_PYTHON \015'
-
+"\e[3A": history-search-forward
+"\e[3B": history-search-backward
+"\e[1;3A": history-search-backward
+"\e[1;3B": history-search-forward
 

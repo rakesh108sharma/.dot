@@ -1,0 +1,3 @@
+rafaelrinaldi/pure
+oh-my-fish/theme-batman
+oh-my-fish/theme-eclm

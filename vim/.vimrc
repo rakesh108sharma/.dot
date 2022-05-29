@@ -152,6 +152,7 @@ call plug#begin()
     Plug 'voldikss/vim-floaterm'
 "    Plug 'blindfs/vim-taskwarrior'
     Plug 'reedes/vim-pencil'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "colorscheme gruvbox
@@ -215,6 +216,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 nmap <leader>bo :enew<cr>
 
 " Move to the next buffer
+"  q
 nmap <leader>bn :bnext<CR>
 
 " Move to the previous buffer
