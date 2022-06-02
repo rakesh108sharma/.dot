@@ -13,11 +13,12 @@ set echo-control-characters off
 set enable-keypad on 
 
 "\ep": '\C-e | most \015'
+"\em": '\C-aman \C-e \015'
 "\ed": '\C-a "$(\C-e)"\C-a'
 "\es": '\C-asudo \C-e \015'
 "\e-": 'sudo !! \015'
 "\ef": 'fc \015'
-"\em": 'qmv \015'
+"\er": 'qmv \015'
 "\ec": 'qcp \015'
 "\el": 'lf \015'
 "\ey": 'lf ~/scripting/learn_PYTHON \015'

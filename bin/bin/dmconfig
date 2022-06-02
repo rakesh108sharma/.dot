@@ -3,6 +3,7 @@
 choice=$(echo -e "\
 bash          @$HOME/.bashrc
 zsh           @$HOME/.zshrc
+fish          @$HOME/.config/fish/config.fish
 profile       @$HOME/.profile
 inputrc       @$HOME/.inputrc
 xinitrc       @$HOME/.xinitrc

@@ -31,7 +31,7 @@ doas xbps-remove -O
 
 clear
 echo -e "$f CLEANING trash... $r"
-rm -r "$HOME"/.trash/*
+doas rm -r "$HOME"/.trash/*
 
 clear
 echo -e "$f UPDATING tldr... $r"
@@ -39,9 +39,13 @@ tldr --update
 
 clear
 echo -e "$f TRIMMING... $r"
+echo -e "\n\ntrimming: /"
 doas fstrim /
+echo -e "\ntrimming: /home"
 doas fstrim /home
+echo -e "\ntrimming: /media/SSD-120G"
 doas fstrim /media/SSD-120G
+echo -e "\ntrimming: /media/SSD-240G"
 doas fstrim /media/SSD-240G
 
 clear

@@ -1,31 +1,39 @@
 #!/bin/bash
 #
 
+function error
+{
+    herber "ERROR"
+    exit 1 
+}
 
+# menu 
 action=$(echo "\
 add
 delete
 " | dmenu -i -p "action?")
-[ -z "$action" ] && exit 1
-
+[ -z "$action" ] && exit 2  
 
 
 case "$action" in
     "add") 
-        packages=$(xbps-query -Rs '')
-        package=$(echo "$packages" | dmenu -i | cut -d' ' -f2)
+        packages=$(xbps-query -Rs '' | cut -d' ' -f2-)
+        package=$(echo "$packages" | dmenu -i | cut -d' ' -f1)
         [ -z "$package" ] && exit 1
-        sudo xbps-install -y "$package" || herber "ERROR" ; exit 1
+        sudo xbps-install -y "$package" || error
         herbe "$package"  " "  "   INSTALLED"
         ;;
     "delete")
-        packages=$(xbps-query -s '')
-        package=$(echo "$packages" | cut -d' ' -f2- | dmenu -i)
+        packages=$(xbps-query -s '' | cut -d' ' -f2-)
+        package=$(echo "$packages" | dmenu -i)
         [ -z "$package" ] && exit 1
         package=${package%% *}
-        sudo xbps-remove -y "$package"  ||  herber "ERROR" ; exit 1 
+        sudo xbps-remove -y "$package"  ||  error 
         herbe "$package"  " "  "   DELETED"
         ;; 
+    *)
+        error
+        ;;
 esac
     
 

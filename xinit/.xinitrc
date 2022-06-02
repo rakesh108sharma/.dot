@@ -1,4 +1,4 @@
-# xrandr --output HDMI-A-0 --mode 1280x720 &
+xrandr --output "HDMI-A-0" --mode "1280x720" 
 # exec dbus-launch --exit-with-session emacs -mm --debug-init
 
 # stopps the complain:"XDG_RUNTIME_DIR not set" (by mpv etc.)

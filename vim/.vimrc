@@ -38,7 +38,7 @@ set softtabstop=4       " number of spaces in tab when editing
 set ai                  "auto indent
 set si                  "smart indent
 
-set textwidth=80        " hard wrap at this column
+set textwidth=100       " hard wrap at this column
 set wrap                " wrap lines
 set magic               " for regular expressions turn magic on
 set showmatch           " highlight matching [{()}]
@@ -47,7 +47,7 @@ set noerrorbells
 set visualbell
 syntax enable
 set wildmenu            " enable tab completion with suggestions
-set wildmode=list:longest,full   
+set wildmode=longest,list,full   
 
 set relativenumber
 " sets numbering in the left margin
@@ -82,6 +82,7 @@ highlight CursorColumn ctermbg=238 cterm=bold guibg=#2b2b2b
 
 " Key Maps
 let mapleader = " "
+nnoremap Q <nop>
 nnoremap ää :
 nnoremap <leader><leader> :
 inoremap ää <ESC>
@@ -116,6 +117,8 @@ cnoremap <C-K> <C-U>
 " fix indenting visual block
 vmap < <gv
 vmap > >gv
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
 
 "ale
 let g:ale_completion_enabled = 1 
@@ -161,6 +164,8 @@ try
 catch
 endtry
 set background=dark
+"sets the opacity on
+hi! Normal ctermbg=NONE guibg=NONE 
 
 "ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']

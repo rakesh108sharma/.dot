@@ -13,7 +13,7 @@ pavucontrol-qt &
 
 picom -b &
 
-st -e /bin/zsh &
+st -e fish &
 
 sleep 2
 chromium &
