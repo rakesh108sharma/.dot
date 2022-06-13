@@ -103,6 +103,7 @@ alias fgrep='fgrep --color=auto'
 alias qmv='qmv --editor=vim --format=destination-only'
 alias qcp='qcp -e vim'
 alias du='du -h | sort -h | tail -n 20'
+alias duu='ncdu -e'
 #alias df='df -h | grep /dev/sd | sort -k 1'
 alias df='df -h | tail +2 | grep -Ev "tmpfs|boot|group" | sort -k 6'
 alias mplayer='mplayer -af volnorm'
@@ -313,5 +314,5 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
 #export QT_SCALE_FACTOR=0.9
 
 complete -C /home/maya/bin/mc mc
-
+eval "$(zoxide init bash)"
 #source <(cod init $$ bash)

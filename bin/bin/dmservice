@@ -3,27 +3,20 @@
 # control services/daemons with dmenu
 # actions: start/stop/restart/enable/disable SERVICE
 # dangerous actions: create/destroy SERVICE links
+# EDIT open THIS file for editing
 
-service=$(sudo vsv | dmenu -i -p "service:" | cut -d ' ' -f 3)
-#service=${service#* }
-#service=${service#* }
-#service=${service%% *}
-[ -z "$service" ] && exit 1
-
-action=$(echo -e "\
-start
-stop
-restart
-
-enable
-disable
+menu=$(echo -e "\
+services
 
 create
 destroy
-" | dmenu -i -p "${service}: ")
-[ -z "$action" ] && exit 1
 
-case "$action" in
+EDIT
+" | dmenu -i -p "Menu ")
+[ -z "$menu" ] && exit 1
+
+
+case "$menu" in
 "create")
     daemon=$(find /etc/sv/ -maxdepth 1 | dmenu -i -p "create?")
     if [[ -z $daemon ]]; then
@@ -48,7 +41,20 @@ case "$action" in
         herbe "Link REMOVED:" "${daemon:-ERROR}"
     fi
     ;;
-*)
+"services")
+	service=$(sudo vsv | dmenu -i -p "service:" | cut -d ' ' -f 3)
+	[ -z "$service" ] && exit 1
+
+action=$(echo -e "\
+start
+stop
+restart
+
+enable
+disable
+" | dmenu -i -p "${service}: ")
+	[ -z "$action" ] && exit 1
+
     if sudo vsv "$action" "$service" &>/dev/null; then
         status=$(sudo sv status "$service")
         herbe "$status"
@@ -57,6 +63,9 @@ case "$action" in
         exit 3
     fi
     ;;
+"EDIT")
+	st -e vim "$0" || exit 1
+	;;
 esac
 
 exit 0

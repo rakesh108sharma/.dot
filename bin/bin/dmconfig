@@ -1,4 +1,18 @@
 #!/bin/bash
+#
+# menu for choosing different config files.
+# file will be opened with vim 
+
+
+error() {
+    case "$1" in
+    1) herber "Variable $$file was NOT set" ;;
+    2) herber "File $file" "does NOT exist" ;;
+    3) herber "Could NOT change directory to" "$HOME/.suckless/dm" ;;
+    esac
+
+    exit 1
+}
 
 choice=$(echo -e "\
 bash          @$HOME/.bashrc
@@ -16,6 +30,7 @@ sxhkd         @$HOME/.config/sxhkd/sxhkdrc
 lynx          @$HOME/.config/lynx/lynx.cfg
 dwm           @$HOME/.suckless/dwm/config.h
 transmission  @$HOME/.config/transmission-daemon/settings.json
+ssh           @$HOME/.ssh/known_hosts
 
 X fstab       @/etc/fstab
 X resolv      @/etc/resolv.conf
@@ -29,8 +44,8 @@ name=${choice%%@*}
 #file=$(echo "$choice" | cut -d'@' -f2)
 file=${choice##*@}
 
-[ -z "$file" ] && exit 1
-! [ -e "$file" ] && herber "FILE: $file" "does not exist" && exit 1
+[ -z "$file" ] && error 1
+! [ -e "$file" ] && error 2
 
 if [ "${name:0:1}" = "X" ]; then
     herber "using SUDO" &
@@ -41,6 +56,8 @@ fi
 
 # if the config of DWM has been changed then enter the folder and drop me into a shell
 if [ "${name// /}" == "dwm" ]; then
-    cd "$HOME/.suckless/dwm" || exit
+    cd "$HOME/.suckless/dwm" || error 3
     st -e bash
 fi
+
+exit 0

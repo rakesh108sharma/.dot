@@ -1,40 +1,46 @@
 #!/bin/bash
 #
 
-function error
-{
-    herber "ERROR"
-    exit 1 
+function error {
+    herber "ERROR" "$1"
+    exit 1
 }
 
-# menu 
+# menu
 action=$(echo "\
 add
 delete
+update
+EDIT
 " | dmenu -i -p "action?")
-[ -z "$action" ] && exit 2  
-
+[ -z "$action" ] && exit 2
 
 case "$action" in
-    "add") 
-        packages=$(xbps-query -Rs '' | cut -d' ' -f2-)
-        package=$(echo "$packages" | dmenu -i | cut -d' ' -f1)
-        [ -z "$package" ] && exit 1
-        sudo xbps-install -y "$package" || error
-        herbe "$package"  " "  "   INSTALLED"
-        ;;
-    "delete")
-        packages=$(xbps-query -s '' | cut -d' ' -f2-)
-        package=$(echo "$packages" | dmenu -i)
-        [ -z "$package" ] && exit 1
-        package=${package%% *}
-        sudo xbps-remove -y "$package"  ||  error 
-        herbe "$package"  " "  "   DELETED"
-        ;; 
-    *)
-        error
-        ;;
+"add")
+    packages=$(xbps-query -Rs '' | cut -d' ' -f2-)
+    package=$(echo "$packages" | dmenu -i | cut -d' ' -f1)
+    [ -z "$package" ] && exit 1
+    sudo xbps-install -y "$package" || error "could not install $package"
+    herbe "$package" " " "   INSTALLED"
+    ;;
+"delete")
+    packages=$(xbps-query -s '' | cut -d' ' -f2-)
+    package=$(echo "$packages" | dmenu -i)
+    [ -z "$package" ] && exit 1
+    package=${package%% *}
+    sudo xbps-remove -y "$package" || error "could not delete $package"
+    herbe "$package" " " "   DELETED"
+    ;;
+"update")
+    sudo xbps-install -Suy || error "update unsuccessful"
+    herbe "updated"
+    ;;
+"EDIT")
+    st -e vim "$0" || error "cannot open $0"
+    ;;
+*)
+    error "no menu selected"
+    ;;
 esac
-    
 
 exit 0
