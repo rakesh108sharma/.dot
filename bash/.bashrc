@@ -281,7 +281,7 @@ vic() {
 }
 
 cheat() {
-    curl cheat.sh/"$1"
+    curl cheat.sh/"$1" | more
 }
 
 #####   END FUNCTIONS   #####

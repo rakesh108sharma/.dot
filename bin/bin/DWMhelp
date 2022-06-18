@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# DWM - help message
+
+most <<EOF
+
+                             HELP  -  dwm key shortcuts
+
+window-key + Alt + 
+                 q       quit         suspend, poweroff, reboot, logout
+                 y       xbps         package manager  add|delete|update 
+
+                 c       config       edit config files
+                 p       process      kill process
+                 s       service      start|stop|enable|diable|create|delete daemons
+
+                 Enter   terminal     start a new BASH terminal
+                 h       htop         process managment
+                 f       file         file manager
+
+
+
+
+
+
+
+EOF
+
+#read -N 1 -p "PRESS KEY"

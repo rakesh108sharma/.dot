@@ -1,12 +1,11 @@
 #!/bin/bash
 #
 # menu for choosing different config files.
-# file will be opened with vim 
-
+# file will be opened with vim
 
 error() {
     case "$1" in
-    1) herber "Variable $$file was NOT set" ;;
+    1) herber "Variable \$file was NOT set" ;;
     2) herber "File $file" "does NOT exist" ;;
     3) herber "Could NOT change directory to" "$HOME/.suckless/dm" ;;
     esac
@@ -44,7 +43,7 @@ name=${choice%%@*}
 #file=$(echo "$choice" | cut -d'@' -f2)
 file=${choice##*@}
 
-[ -z "$file" ] && error 1
+[ -z "$file" ] && exit 1
 ! [ -e "$file" ] && error 2
 
 if [ "${name:0:1}" = "X" ]; then
