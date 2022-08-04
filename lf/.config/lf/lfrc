@@ -110,14 +110,34 @@ cmd zip ${{
     rm -rf $1
 }}
 
+# make a directory
+cmd makedir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+# make a file and edit it
+cmd makefile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
 #################################
 set previewer ~/bin/prev
+
+## unmap some defaults ##
+map m
+########
+
 map i $~/bin/prev $f | most 
 
 set ratios 1:2
 set drawbox true
 set icons true
 set incsearch
+set ignorecase true
 
 map . set hidden!
 
@@ -141,6 +161,10 @@ map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
 map ga cd ~/audio
 map gv cd ~/video
 
+# make/create
+map md makedir
+map mf makefile
+
 # CONFIG-section
 map -b $v ~/.bashrc
 map -x $v ~/bin/autostart.sh ~/.xinitrc
@@ -156,4 +180,3 @@ cmd dragon %dragon -a -x $fx
 cmd dragon-individual %dragon $fx 
 map ++ dragon
 map +i dragon-individual
-

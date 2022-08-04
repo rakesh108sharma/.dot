@@ -7,7 +7,7 @@
 
 manpages=$(find /usr/share/man/man1/ /usr/share/man/man8/)
 
-choice=$(echo "$manpages" | cut -d'/' -f6 | dmenu)
+choice=$(echo "$manpages" | cut -d'/' -f6 | dmenu -p "manpage")
 [ -z "$choice" ] && exit 1
 
 # output ex. "chmod.1"

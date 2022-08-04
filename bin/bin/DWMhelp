@@ -17,7 +17,7 @@ window-key + Alt +
                  Enter   terminal     start a new BASH terminal
                  h       htop         process managment
                  f       file         file manager
-
+                 m       manpage      finds manpages with dmenu
 
 
 

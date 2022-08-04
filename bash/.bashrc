@@ -27,6 +27,9 @@ export QT_IM_MODULE='ibus'
 export SDL_IM_MODULE='ibus'
 export XMODIFIERS='@im=ibus'
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 #export TRANSMISSION_HOME=/home/maya/.config/transmission-daemon
 
 #PS1='[\u@\h \W]\$ '
@@ -61,7 +64,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
-alias c='clear'
+#alias c='clear'
 alias _='sudo'
 alias error='echo -e "\033[5;31;40mERROR:\033[0m\033[31;40m"'
 alias romy='cd ~/video/ROMY'
@@ -147,6 +150,7 @@ tbirthdate() {
 #####   END ALIAS   #####
 
 #####   F U N C T I O N S   #####
+
 [ -f "$HOME"/.bash_functions ] && . "$HOME"/.bash_functions
 
 uu() { udevil umount /dev/sd"$1"; } # unmount usb devices
@@ -159,12 +163,15 @@ myip() {
     echo
 }
 
+### functions for package managment
+# search for packages locally and remotely
 yys() {
     echo -e "LOCAL\tsudo xbps-query -s\n" && sudo xbps-query -s "$1"
     echo
     echo -e "REPO\tsudo xbps-query -Rs\n" && sudo xbps-query -Rs "$1"
 }
 
+# search for packages in file=voidpackages
 ys() {
     ag --nonumber -w "$1" "$HOME/voidpackages" || yss "$@"
 }
@@ -177,15 +184,18 @@ yss() {
 #    sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
 #}
 
+# install package
 yyii() {
     choice=$(xbps-query -Rs '' | dmenu)
     choice="${choice#* }"
     sudo xbps-install "${choice%% *}"
 }
 
+# remove package
 yyrr() {
     sudo xbps-remove "$(xbps-query -s '' | fzy -l 15 | awk '{ print $2}')"
 }
+### END functions for package managment
 
 kernel() {
     clear
@@ -212,10 +222,7 @@ run() {
 }
 
 down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g'; }
-mkcd() {
-    mkdir -p -- "$*"
-    cd -- "$*" || exit
-}
+
 copy() { scp "$@" void@192.168.1.12:; }
 
 ex() {
@@ -276,14 +283,59 @@ mman() {
     esac
 }
 
-vic() {
-    vim-huge $(command -v "$1")
-}
-
 cheat() {
     curl cheat.sh/"$1" | more
 }
 
+### some change dir functions
+# cd with dmenu or edit file with micro
+c() {
+    if [[ -z $1 ]]; then
+        #choice=$(ls -a --color=never | dmenu | cut -d' ' -f1)
+        choice=$(find . -maxdepth 1 | dmenu | cut -d' ' -f1)
+        if [[ -d "$choice" ]]; then
+            cd "$choice" || exit
+        elif [[ -f "$choice" ]]; then
+            micro "$choice"
+        fi
+    else
+        cd "$1" || exit
+    fi
+}
+
+mkcd() {
+    mkdir -p -- "$*"
+    cd -- "$*" || exit
+}
+
+# helper function for bettercd
+cd() {
+    [[ $# -eq 0 ]] && return
+    builtin cd "$@" || exit
+}
+
+# cd and edit with fzf and preview
+bettercd() {
+    cd "$1" || exit
+    if [ -z "$1" ]; then
+        selection="$(\ls -a | fzf --height 85% --reverse --info hidden --prompt "choice: " \
+            --preview ' cd_pre="$(echo $(pwd)/$(echo {}))"
+                    echo $cd_pre
+                    echo
+                    ls -a --color=always "${cd_pre}"
+                    bat --style=numbers --theme=ansi --color=always {} 2>/dev/null' \
+            --bind alt-j:preview-down,alt-k:preview-up \
+            --prompt "make a selection: " \
+            --preview-window=right:70%)"
+        if [[ -d "$selection" ]]; then
+            cd "$selection" || exit
+        elif [[ -f "$selection" ]]; then
+            vim "$selection"
+        fi
+    fi
+}
+alias cd='bettercd'
+### END cd functions
 #####   END FUNCTIONS   #####
 
 ############################################################

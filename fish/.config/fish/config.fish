@@ -11,6 +11,9 @@ set -gx TERM xterm-256color
 #set -g theme_hide_hostname no
 #set -g theme_hostname always
 
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
 
 if type -q exa 
   alias ll "exa -lg --git --icons"
@@ -39,3 +42,6 @@ alias ww='vim-huge $HOME/vimwiki/INDEX.md'
 alias ff='lf'
 alias df='df -h | tail +2 | grep -Ev "tmpfs|boot|group" | sort -k 6'
 alias duu='ncdu -e'
+
+# Created by `pipx` on 2022-07-21 16:12:30
+set PATH $PATH /home/maya/.local/bin

@@ -14,5 +14,7 @@ case "$1" in
     #              ImageLayer::add [identifier]="example0" [x]="0" [y]="0" [max_height]="40" [max_width]="40" [path]="$1"
     #              read);;
 *.md) mdcat "$1" ;;
+*.iso) isoinfo -l -i "$1" ;;
+*.torrent) transmission-show "$1" ;;
 *) highlight -O ansi "$1" || bat --pager=less "$1" ;;
 esac

@@ -10,6 +10,7 @@ function error {
 action=$(echo "\
 add
 delete
+list
 update
 EDIT
 " | dmenu -i -p "action?")
@@ -30,6 +31,10 @@ case "$action" in
     package=${package%% *}
     sudo xbps-remove -y "$package" || error "could not delete $package"
     herbe "$package" " " "   DELETED"
+    ;;
+"list")
+    choice=$(xbps-query -l | cut -d' ' -f2- | dmenu -i -p "info")
+    xbps-query "${choice%% *}" | dmenu
     ;;
 "update")
     sudo xbps-install -Suy || error "update unsuccessful"
