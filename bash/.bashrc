@@ -318,20 +318,24 @@ cd() {
 bettercd() {
     cd "$1" || exit
     if [ -z "$1" ]; then
-        selection="$(\ls -a | fzf --height 85% --reverse --info hidden --prompt "choice: " \
-            --preview ' cd_pre="$(echo $(pwd)/$(echo {}))"
+        while true; do
+            selection="$(\ls -a | fzf --height 85% --reverse --info hidden --prompt "choice: " \
+                --preview ' cd_pre="$(echo $(pwd)/$(echo {}))"
                     echo $cd_pre
                     echo
                     ls -a --color=always "${cd_pre}"
                     bat --style=numbers --theme=ansi --color=always {} 2>/dev/null' \
-            --bind alt-j:preview-down,alt-k:preview-up \
-            --prompt "make a selection: " \
-            --preview-window=right:70%)"
-        if [[ -d "$selection" ]]; then
-            cd "$selection" || exit
-        elif [[ -f "$selection" ]]; then
-            vim "$selection"
-        fi
+                --bind alt-j:preview-down,alt-k:preview-up \
+                --prompt "make a selection: " \
+                --preview-window=right:70%)"
+            if [[ -d "$selection" ]]; then
+                cd "$selection" || exit
+            elif [[ -f "$selection" ]]; then
+                vim "$selection"
+            else
+                break
+            fi
+        done
     fi
 }
 alias cd='bettercd'
