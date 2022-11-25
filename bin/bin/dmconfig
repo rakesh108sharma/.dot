@@ -28,6 +28,7 @@ mimeapps      @$HOME/.config/mimeapps.list
 sxhkd         @$HOME/.config/sxhkd/sxhkdrc
 lynx          @$HOME/.config/lynx/lynx.cfg
 dwm           @$HOME/.suckless/dwm/config.h
+cwm           @$HOME/.cwmrc
 transmission  @$HOME/.config/transmission-daemon/settings.json
 ssh           @$HOME/.ssh/known_hosts
 

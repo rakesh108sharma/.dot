@@ -37,8 +37,10 @@ case "$action" in
     xbps-query "${choice%% *}" | dmenu
     ;;
 "update")
+    herbe "updating..."
+    sleep 3
     sudo xbps-install -Suy || error "update unsuccessful"
-    herbe "updated"
+    herbe "UPDATED"
     ;;
 "EDIT")
     st -e vim "$0" || error "cannot open $0"

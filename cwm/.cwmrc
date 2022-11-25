@@ -8,6 +8,7 @@ gap 0 0 0 0    #top bottom left right
 
 fontname "fixed:pixelsize=18:style=semicondensed"
 
+unbound-key all
 bind-key 4C-r restart
 bind-key 4C-q quit
 
@@ -32,20 +33,30 @@ bind-key 4S-9 window-movetogroup-9
 
 bind-key 4-Right window-cycle
 bind-key 4-Left  window-rcycle
+bind-key 4-Up    window-fullscreen
+bind-key 4-Down  window-vtile
+bind-key 4-x     window-close
 
-bind-key 4M-Right cwm-w-mv right
-bind-key 4M-Left  cwm-w-mv left
-bind-key 4M-Up    cwm-w-mv top
-bind-key 4M-Down  cwm-w-mv bottom
+bind-key 4S-Right window-move-right
+bind-key 4S-Left  window-move-left
+bind-key 4S-Up    window-move-up
+bind-key 4S-Down  window-move-down
 
-bind-key 4-f window-fullscreen
+bind-key 4M-Left window-snap-left
+bind-key 4M-Right window-snap-right
+
+#bind-key 4-f window-fullscreen
 bind-key 4-m window-maximize
-bind-key 4-v window-vtile
-bind-key 4-x window-close
+#bind-key 4-v window-vtile
+#bind-key 4-x window-close
 
-bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
-bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
-bind-key 4-Return "st -e zsh"
+
+bind-key XF86AudioRaiseVolume "/bin/amixer sset Master 5%+ unmute"
+bind-key XF86AudioLowerVolume "/bin/amixer sset Master 5%- unmute"
+bind-key XF96AudioMute "/bin/amixer sset Master toggle"
+#bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
+#bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
+bind-key 4-Return "st -e fish"
  
 bind-key 4-w menu-window     # w window       
 bind-key 4-a menu-cmd        # a app        
@@ -54,11 +65,16 @@ bind-key 4-s menu-ssh        # ssh
 
 bind-key 4M-p  "dmenu_run"   # program dmenu
 
-bind-key 4M-t  "xterm -e top"
+bind-key 4M-h  "xterm -e htop"
 bind-key 4M-f  "xterm -e lf"
-bind-key 4M-m  "xterm -e micro"
+bind-key 4M-m  "/home/maya/bin/manpagefinder"
 bind-key 4M-v  "xterm -e vim"
 bind-key 4M-w  "xterm -e vim-huge /home/maya/vimwiki/INDEX.md"
+bind-key 4M-q  "/home/maya/bin/power"
+bind-key 4M-y  "/home/maya/bin/yyy"
+bind-key 4M-c  "/home/maya/bin/dmconfig"
+bind-key 4M-k  "/home/maya/bin/dmkill"
+bind-key 4-u   "/home/maya/bin/uhr"
 
 command chrome      "chrome --enable-unveil"
 command terminal    "qterminal -e zsh"
@@ -68,4 +84,6 @@ command mpv         "xterm -e mpv"
 command links       "xterm -e links duckduckgo.com"
 command ff          "xterm -e lf" 
 
-autogroup 2 "chromium-browser"
+autogroup 2 "chromium,Chromium"
+autogroup 3 "Navigator,Firefox"
+autogroup 7 "pavucontrol-qt"

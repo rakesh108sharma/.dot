@@ -6,7 +6,9 @@ suspend
 poweroff
 reboot
 hibernate
-logout" | dmenu -i -p "POWER")
+logout
+EDIT
+" | dmenu -i -p "POWER")
 [ -z "$choice" ] && exit 1
 
 case "$choice" in
@@ -37,6 +39,9 @@ case "$choice" in
     pgrep clip &>/dev/null && pkill clip
     pgrep devmon &>/dev/null && pkill devmon
     pgrep Xorg &>/dev/null && pkill Xorg
+    ;;
+"EDIT")
+    st -e vim "$0" || herber "cannot open $0"
     ;;
 esac
 
