@@ -21,6 +21,7 @@ profile       @$HOME/.profile
 inputrc       @$HOME/.inputrc
 xinitrc       @$HOME/.xinitrc
 autostart     @$HOME/bin/autostart.sh
+alacritty     @$HOME/.config/alacritty/alacritty.yml
 vim           @$HOME/.vimrc
 nano          @$HOME/.nanorc
 lf            @$HOME/.config/lf/lfrc
