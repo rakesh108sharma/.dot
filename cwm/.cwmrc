@@ -56,8 +56,9 @@ bind-key XF86AudioLowerVolume "/bin/amixer sset Master 5%- unmute"
 bind-key XF96AudioMute "/bin/amixer sset Master toggle"
 #bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
 #bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
-bind-key 4-Return "st -e fish"
- 
+bind-key 4-Return "alacritty -e fish"
+bind-key 4M-Return "alacritty -e bash"
+
 bind-key 4-w menu-window     # w window       
 bind-key 4-a menu-cmd        # a app        
 bind-key 4-p menu-exec       # program       
@@ -65,11 +66,11 @@ bind-key 4-s menu-ssh        # ssh
 
 bind-key 4M-p  "dmenu_run"   # program dmenu
 
-bind-key 4M-h  "xterm -e htop"
-bind-key 4M-f  "xterm -e lf"
+bind-key 4M-h  "alacritty -e htop"
+bind-key 4M-f  "alacritty -e lf"
 bind-key 4M-m  "/home/maya/bin/manpagefinder"
-bind-key 4M-v  "xterm -e vim"
-bind-key 4M-w  "xterm -e vim-huge /home/maya/vimwiki/INDEX.md"
+bind-key 4M-v  "alacritty -e vim"
+bind-key 4M-w  "alacritty -e vim-huge /home/maya/vimwiki/INDEX.md"
 bind-key 4M-q  "/home/maya/bin/power"
 bind-key 4M-y  "/home/maya/bin/yyy"
 bind-key 4M-c  "/home/maya/bin/dmconfig"
@@ -78,11 +79,11 @@ bind-key 4-u   "/home/maya/bin/uhr"
 
 command chrome      "chrome --enable-unveil"
 command terminal    "qterminal -e zsh"
-command tt          "xterm -e top"
-command ee          "xterm -e micro"
-command mpv         "xterm -e mpv"
-command links       "xterm -e links duckduckgo.com"
-command ff          "xterm -e lf" 
+command tt          "alacritty -e top"
+command ee          "alacritty -e micro"
+command mpv         "alacritty -e mpv"
+command links       "alacritty -e links duckduckgo.com"
+command ff          "alacritty -e lf" 
 
 autogroup 2 "chromium,Chromium"
 autogroup 3 "Navigator,Firefox"

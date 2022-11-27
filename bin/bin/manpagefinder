@@ -5,13 +5,13 @@
 #     man8   system maintenance
 
 
-manpages=$(find /usr/share/man/man1/ /usr/share/man/man8/)
+manpages=$(find /usr/share/man/man1/ /usr/share/man/man1p/  /usr/share/man/man4/  /usr/share/man/man8/)
 
 choice=$(echo "$manpages" | cut -d'/' -f6 | dmenu -p "manpage")
 [ -z "$choice" ] && exit 1
 
 # output ex. "chmod.1"
 # change to "1 chmod" and call it with man
-st -e man "${choice##*.}" "${choice%.*}"
+st -g 108x35 -e man "${choice##*.}" "${choice%.*}"
 
 exit 0
