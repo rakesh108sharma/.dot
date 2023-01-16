@@ -53,7 +53,13 @@ bind-key 4-m window-maximize
 
 bind-key XF86AudioRaiseVolume "/bin/amixer sset Master 5%+ unmute"
 bind-key XF86AudioLowerVolume "/bin/amixer sset Master 5%- unmute"
-bind-key XF96AudioMute "/bin/amixer sset Master toggle"
+bind-key XF86AudioMute "/bin/amixer sset Master toggle"
+# XF86AudioPlay
+# XF86AudioNext
+# XF86AudioPrev
+# XF86Search
+# XF86HomePage
+# XF86Tools
 #bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
 #bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
 bind-key 4-Return "alacritty -e fish"

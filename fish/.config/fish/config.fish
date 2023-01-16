@@ -42,6 +42,7 @@ alias ww='vim-huge $HOME/vimwiki/INDEX.md'
 alias ff='lf'
 alias df='df -h | tail +2 | grep -Ev "tmpfs|boot|group" | sort -k 6'
 alias duu='ncdu -e'
+alias duf='duf -only local'
 
 # Created by `pipx` on 2022-07-21 16:12:30
 set PATH $PATH /home/maya/.local/bin

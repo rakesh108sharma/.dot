@@ -38,7 +38,7 @@ X resolv      @/etc/resolv.conf
 X crontab     @/etc/crontab
 X hosts       @/etc/hosts
 
-THIS-menu     @$HOME/bin/dmconfig" | dmenu -i -l 16 -p "EDIT")
+THIS-menu     @$HOME/bin/dmconfig" | dmenu -i -l 25 -p "EDIT")
 
 #name=$(echo "$choice" | cut -d'@' -f1)
 name=${choice%%@*}

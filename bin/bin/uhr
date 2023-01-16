@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# notification with date and time
+
+datum=$(date "+%a %x")
+uhr=$(date "+%H:%M")
+
+herbe "               $datum" " "  "$uhr"

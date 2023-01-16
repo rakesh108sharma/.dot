@@ -1,0 +1,30 @@
+#!/bin/env bash
+#
+# - create a bash file
+# - make file executable
+# - edit file
+
+editor="micro"
+file="$1"
+
+[ -z "$file" ] && { echo "You have to enter a file name!"; exit 1; }
+[ -f "$file" ] && { echo "File ${file} exists already!"; exit 1; }
+
+touch "$file"
+
+cat > "$file" << EOF 
+#!/bin/env bash
+#
+set -o errexit
+set -o pipefail
+set -o nounset
+
+#
+### START ###
+
+### END ###
+EOF
+
+chmod +x "$file"
+
+exec "$editor" "$file"
