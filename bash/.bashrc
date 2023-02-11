@@ -126,27 +126,27 @@ alias yta3='youtube-dl -x --audio-format mp3 --prefer-ffmpeg'
 alias chc='check_connections'
 alias explain='lynx explainshell.com'
 # taskwarrior
-alias t='clear; task due.not:someday'
-alias tls='task ls due.not:someday'
-alias tl='task list due.not:someday'
-alias tla='clear; task -DELETED -COMPLETED all'
-alias tbook='task minimal +book due.not:someday'
-alias tbd='task minimal waiting +bd'
-alias ta='task add'
-alias tm='task mod'
-alias te="task edit"
-alias tapt='clear; task \( +apt or +dr \) -COMPLETED -DELETED all'
-alias ti='clear; task +idee -COMPLETED -DELETED all'
-alias th='clear; task +home -COMPLETED -DELETED all'
-alias tg='clear; task +garten -COMPLETED -DELETED all'
-alias tb='clear; task +buy -COMPLETED -DELETED all'
-alias td='clear; task +do -COMPLETED -DELETED all'
-tr() {
-    task "$1" mod "recur:$2"
-}
-tbirthdate() {
-    task add "$1 Geburtstag due:$2" until:due+1w wait:due-1m
-}
+#    alias t='clear; task due.not:someday'
+#    alias tls='task ls due.not:someday'
+#    alias tl='task list due.not:someday'
+#    alias tla='clear; task -DELETED -COMPLETED all'
+#    alias tbook='task minimal +book due.not:someday'
+#    alias tbd='task minimal waiting +bd'
+#    alias ta='task add'
+#    alias tm='task mod'
+#    alias te="task edit"
+#    alias tapt='clear; task \( +apt or +dr \) -COMPLETED -DELETED all'
+#    alias ti='clear; task +idee -COMPLETED -DELETED all'
+#    alias th='clear; task +home -COMPLETED -DELETED all'
+#    alias tg='clear; task +garten -COMPLETED -DELETED all'
+#    alias tb='clear; task +buy -COMPLETED -DELETED all'
+#    alias td='clear; task +do -COMPLETED -DELETED all'
+#    tr() {
+#        task "$1" mod "recur:$2"
+#    }
+#    tbirthdate() {
+#        task add "$1 Geburtstag due:$2" until:due+1w wait:due-1m
+#    }
 #####   END ALIAS   #####
 
 #####   F U N C T I O N S   #####

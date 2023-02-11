@@ -15,14 +15,16 @@ touch "$file"
 cat > "$file" << EOF 
 #!/bin/env bash
 #
+# 
 set -o errexit
 set -o pipefail
 set -o nounset
-
 #
+
 ### START ###
 
 ### END ###
+exit 0
 EOF
 
 chmod +x "$file"

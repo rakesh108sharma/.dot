@@ -4,11 +4,20 @@ $if Bash
     Space: magic-space
 $endif
 
-set completion-ignore-case On
+# pretify
 set colored-stats On
+set colored-completion-prefix On
 set visible-stats On
+
+# completion settings
 set show-all-if-ambiguous on
+set completion-ignore-case On
+set completion-display-width 0
+set completion-query-items 1000
+
+# ^C no longer shows on C-c press
 set echo-control-characters off
+
 # made DEL work in st
 set enable-keypad on 
 
@@ -22,6 +31,8 @@ set enable-keypad on
 "\ec": 'qcp \015'
 "\el": 'lf \015'
 "\ey": 'lf ~/scripting/learn_PYTHON \015'
+
+# command history search
 "\e[A": history-search-forward
 "\e[B": history-search-backward
 #"\e[1;3A": history-search-backward

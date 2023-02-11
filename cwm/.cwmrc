@@ -60,6 +60,7 @@ bind-key XF86AudioMute "/bin/amixer sset Master toggle"
 # XF86Search
 # XF86HomePage
 # XF86Tools
+bind-key XF86HomePage "alacritty -e tty-clock -rs -C4"
 #bind-key 4-Down "/bin/amixer sset Master 5%- unmute"
 #bind-key 4-Up   "/bin/amixer sset Master 5%+ unmute"
 bind-key 4-Return "alacritty -e fish"
@@ -93,4 +94,4 @@ command ff          "alacritty -e lf"
 
 autogroup 2 "chromium,Chromium"
 autogroup 3 "Navigator,Firefox"
-autogroup 7 "pavucontrol-qt"
+autogroup 7 "pavucontrol-qt,pavucontrol-qt"

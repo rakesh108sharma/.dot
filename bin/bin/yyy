@@ -18,7 +18,7 @@ EDIT
 
 case "$action" in
 "add")
-    packages=$(xbps-query -Rs '' | cut -d' ' -f2-)
+    packages=$(xbps-query -Rs '' | grep -v '^\[\*\]' | cut -d' ' -f2-)
     package=$(echo "$packages" | dmenu -i | cut -d' ' -f1)
     [ -z "$package" ] && exit 1
     sudo xbps-install -y "$package" || error "could not install $package"
