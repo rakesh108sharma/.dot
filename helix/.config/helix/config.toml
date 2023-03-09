@@ -1,5 +1,9 @@
 theme = "nord"
 
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -8,6 +12,10 @@ select = "underline"
 [editor.file-picker]
 hidden = true
 
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+
 [keys.normal.space]
-q = ":q!"
-Q = ":wq"
+q = ":q"
+Q = ":q!"
+W = ":wq"
