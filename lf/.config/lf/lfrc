@@ -20,6 +20,9 @@ set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
+set ignorecase true
+set icons true
+
 # use enter for shell commands
 map <enter> shell
 
@@ -124,6 +127,13 @@ cmd makefile ${{
   $EDITOR $ans
 }}
 
+# create (touch) a file
+cmd touchfile ${{
+    printf "Touch File .. Name: "
+    read ans
+    touch $ans
+}}
+
 #################################
 set previewer ~/bin/prev
 
@@ -164,6 +174,7 @@ map gv cd ~/video
 # make/create
 map md makedir
 map mf makefile
+map mt touchfile
 
 # CONFIG-section
 map -b $v ~/.bashrc
