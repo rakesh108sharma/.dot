@@ -76,6 +76,7 @@ alias yyx='sudo xbps-install -uy xbps'
 #ys = function for searching packages with 'ag' in file 'voidpackages' - word
 #yss = F() for searching packages with 'ag' in file 'voidpackages' - greedy
 #yyss = function fuzzy search for a package
+#yyp = function search for package starting with "$1"
 alias yyr='echo -e "sudo xbps-remove\n" && sudo xbps-remove'
 #yyrr = function fuzzy search AND remove
 alias yyl='echo -e "sudo xbps-query -l | most\n" && sudo xbps-query -l | most'
@@ -179,6 +180,8 @@ ys() {
 yss() {
     ag --nonumber "$1" "$HOME/voidpackages" | most
 }
+
+yyp() { yys $1 | cut -d' ' -f 2- | grep -e "^${1}"; }
 
 #yyii() {
 #    sudo xbps-install "$(xbps-query -Rs '' | fzy -l 25 | awk '{ print $2}')"
