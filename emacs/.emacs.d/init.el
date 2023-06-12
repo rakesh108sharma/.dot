@@ -22,6 +22,11 @@
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; DIRED
+;; Copy and move files netween dired buffers
+(setq dired-dwim-target t)
+(setq dired-guess-shell-alist-user `(("\\.mkv\\'" "mpv")
+                                       ("\\.mp4\\'" "mpv")))
 ;;; Initialize PACKAGE sources [[
 (require 'package)
 
@@ -101,12 +106,12 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (load-theme 'doom-nord-light t)
-  (doom-themes-visual-bell-config))
-
+;(use-package doom-themes
+;  :ensure t
+;  :config
+;  (load-theme 'doom-nord-light t)
+;  (doom-themes-visual-bell-config))
+(load-theme 'deeper-blue t)
 ;(use-package gruvbox-theme
 ;  :config (load-theme 'gruvbox t))
 
