@@ -13,6 +13,7 @@ sleep 1
 doas xbps-install -Suy xbps
 doas xbps-install -Suy
 doas xbps-install -Suy
+doas flatpak update -y
 
 clear
 echo -e "$f REMOVING old kernels... $r"

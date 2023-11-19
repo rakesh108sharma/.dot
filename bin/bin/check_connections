@@ -7,6 +7,8 @@
 #     - no DNS
 #     - no default route defined
 
+herbe "checking connections..."
+
 if ping -c 3 127.0.0.1 &>/dev/null; then
     if ping -c 3 192.168.1.1 &>/dev/null; then
         if ping -c 3 8.8.8.8 &>/dev/null; then
@@ -17,7 +19,7 @@ if ping -c 3 127.0.0.1 &>/dev/null; then
                 exit 1
             fi
         else
-            herber "NO internet" "check ip a"
+            herber "NO internet" "check ip addr & ip route"
             exit 1
         fi
     else
