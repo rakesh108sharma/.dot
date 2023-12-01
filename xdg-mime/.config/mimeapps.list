@@ -3,6 +3,7 @@ text/plain=vim.desktop
 text/x-shellscript=vim.desktop
 audio/webm=mpv.desktop;
 audio/x-matroska=mpv.desktop;
+audio/mp3=mpv.desktop;
 audio/mpeg=mpv.desktop;
 image/*=vimiv.desktop;
 image/jpeg=vimiv.desktop;
