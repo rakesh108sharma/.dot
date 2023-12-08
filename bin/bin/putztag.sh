@@ -50,6 +50,13 @@ echo -e "\ntrimming: /media/SSD-240G"
 doas fstrim /media/SSD-240G
 
 clear
+echo -e "$f RKHUNTER... $r"
+echo -e "\n\nupdating rkhunter"
+doas rkhunter --update
+echo -e "\nchecking for rootkits"
+doas rkhunter -c --sk --rwo --propupd
+
+clear
 echo -e "\033[32;40m Putztag ist vorbei. $r"
 echo
 

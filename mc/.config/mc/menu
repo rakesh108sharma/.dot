@@ -148,7 +148,7 @@ D       Delete tagged files if a copy exists in the other directory.
 
 m       View manual page
         MAN=%{Enter manual name}
-        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 man -P cat "$MAN"
+        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 man "$MAN"
 
 = f \.gz$ & t r
 + ! t t
@@ -367,3 +367,7 @@ C       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2
 + x /usr/bin/open | x /usr/local/bin/open & x /bin/sh
 o       Open next a free console
         open -s -- sh
+
++ t t
+O       bulk rename
+        massren %t

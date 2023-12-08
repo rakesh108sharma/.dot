@@ -8,7 +8,7 @@
 export PATH=$HOME/bin:$PATH
 export MANPAGER=most
 export PAGER=most
-export EDITOR=micro
+export EDITOR=mcedit
 export BROWSER=chromium
 #export SHELL=/bin/bash
 export HISTSIZE=1000
