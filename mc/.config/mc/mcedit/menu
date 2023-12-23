@@ -459,7 +459,7 @@ s       Invoke `shell'
 
 m       view `man'
         MAN=%{Enter name of man:}
-        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 man -P cat $MAN
+        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 man $MAN
 
 i       Insert output of command to cursor
         CMD=%{ Enter command: }

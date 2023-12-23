@@ -83,13 +83,13 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=nicedark
+skin=sand256
 filepos_max_saved_entries=1024
 
 [Layout]
 output_lines=0
 left_panel_size=63
-top_panel_size=0
+top_panel_size=18
 message_visible=false
 keybar_visible=true
 xterm_title=true
@@ -155,7 +155,7 @@ ignore_dirs_enable=true
 ignore_dirs=
 
 [Panelize]
-SUID- und SGID-Programme suchen=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
 Nach dem Patchen nach Ablehnungen suchen=find . -name \\*.rej -print
-Nach *.orig nach dem Patchen suchen=find . -name \\*.orig -print
 Geänderte Git-Dateien=git ls-files --modified
+SUID- und SGID-Programme suchen=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
+Nach *.orig nach dem Patchen suchen=find . -name \\*.orig -print

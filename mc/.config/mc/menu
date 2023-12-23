@@ -20,6 +20,31 @@ shell_patterns=0
 #   %f    quote expanded macro
 #   %1f   ditto
 #   %0f   don't quote expanded macro
+# Condition syntax:
+#   <cond>          = <sub-cond>
+#   or:             = <cond> | <cond> ...
+#   or:             = <cond> & <cond> ...
+#
+# Sub-condition:
+#   f <pattern>            current file matching pattern
+#   F <pattern>            other file matching pattern
+#   d <pattern>            current directory matching pattern
+#   D <pattern>            other directory matching pattern
+#   t <type>               current file of type
+#   T <type>               other file of type
+#   ! <sub-cond>           negate the result of sub-condition
+#
+# Type is one or more of the following characters:
+#   n not directory
+#   r regular file
+#   d directory
+#   l link
+#   c char special
+#   b block special
+#   f fifo
+#   s socket
+#   x executable
+#   t tagged
 ##############################################################################
 
 + ! t t
@@ -371,3 +396,7 @@ o       Open next a free console
 + t t
 O       bulk rename
         massren %t
+
++ t r
+e       edit file with helix
+        hx %f
