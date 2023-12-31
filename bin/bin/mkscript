@@ -4,7 +4,7 @@
 # - make file executable
 # - edit file
 
-editor="micro"
+editor="nvim"
 file="$1"
 
 [ -z "$file" ] && { echo "You have to enter a file name!"; exit 1; }

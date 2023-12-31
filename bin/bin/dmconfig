@@ -2,6 +2,7 @@
 #
 # menu for choosing different config files.
 # file will be opened with vim
+editor="hx"
 
 error() {
     case "$1" in
@@ -45,14 +46,14 @@ name=${choice%%@*}
 #file=$(echo "$choice" | cut -d'@' -f2)
 file=${choice##*@}
 
-[ -z "$file" ] && exit 1
+[ -z "$file" ] && error 1
 ! [ -e "$file" ] && error 2
 
 if [ "${name:0:1}" = "X" ]; then
     herber "using SUDO" &
-    sudo st -e vim "$file"
+    sudo st -e "$editor" "$file"
 else
-    st -e vim "$file"
+    st -e "$editor" "$file"
 fi
 
 # if the config of DWM has been changed then enter the folder and drop me into a shell
