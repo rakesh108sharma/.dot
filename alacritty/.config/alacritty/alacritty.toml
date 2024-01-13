@@ -1,0 +1,17 @@
+[font]
+size = 7.0
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[shell]
+program = "/bin/fish"
+
+[window]
+opacity = 0.8
+startup_mode = "Maximized"
