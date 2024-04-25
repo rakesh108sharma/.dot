@@ -75,10 +75,12 @@ if has("gui_running")
 endif
 
 " find your cursor with highlight / grey dark-light 232-255
-set cursorline
-set cursorcolumn
 highlight Cursorline ctermbg=238 cterm=bold guibg=#2b2b2b
 highlight CursorColumn ctermbg=238 cterm=bold guibg=#2b2b2b
+highlight ColorColumn ctermbg=233 
+set cursorline
+set cursorcolumn
+set colorcolumn=80
 
 " Key Maps
 let mapleader = " "
@@ -275,3 +277,4 @@ function! VimwikiLinkHandler(link)
   endif
 endfunction
 
+highlight ColorColumn ctermbg=233 

@@ -47,7 +47,7 @@ cmd open ${{
         video/*) mpv $fx;;
         audio/*) mpv $fx;;
         image/*) sxiv $fx;;
-        *pdf) mupdf $fx;;
+        *pdf) xreader $fx;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -122,6 +122,7 @@ cmd makedir ${{
 cmd makefile ${{
   printf "File Name: "
   read ans
+  touch $ans
   $EDITOR $ans
 }}
 
@@ -164,8 +165,7 @@ map gd cd ~/downloads/torrents
 map gu cd /usr/share
 map gc cd ~/.config
 map gm cd /media
-map gl cd /media/sdc4-ata-ST1000LM048-2E71/home/svami/_LERNEN/TTC\ -\ Learning\ Spanish
-map gE cd ~/SPANISH/TTC\ -\ Learning\ Spanish
+map gH cd /media/SSD-240G/LANGUAGES/hindi/hindi_schoolbooks
 map ga cd ~/audio
 map gv cd ~/video
 

@@ -1,0 +1,33 @@
+auto-reload yes
+show-read-feeds no
+
+bind-key LEFT quit
+bind-key RIGHT open
+
+browser "/bin/links %u"
+macro m set browser "/bin/mpv %u"; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro b set browser "/usr/bin/chromium %u"; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro v set browser "/usr/bin/yt-dlp -f 22 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro a set browser "/usr/bin/yt-dlp -f 139 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro d set browser "/usr/bin/yt-dlp %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+
+
+# PODBOAT
+player "mpv"
+download-path "~/.newsboat/podcasts"
+podlist-format "%-4i %-10S %b"
+
+# a lightly-colored, well-readable newsbeuter color scheme
+
+color listnormal        black white bold
+color listnormal_unread black white 
+color listfocus         white blue 
+color listfocus_unread  white blue bold
+color info              white red bold
+color background        black white
+color article           black white
+
+# highlights
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
