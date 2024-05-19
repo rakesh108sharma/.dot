@@ -56,7 +56,8 @@ doas rkhunter --update
 echo -e "\nchecking for rootkits"
 doas rkhunter -c --sk --rwo --propupd
 
-clear
+echo
+echo
 echo -e "\033[32;40m Putztag ist vorbei. $r"
 echo
 
