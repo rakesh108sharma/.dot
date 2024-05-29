@@ -39,6 +39,10 @@ echo -e "$f UPDATING tldr... $r"
 tldr --update
 
 clear
+echo -e "$f UPDATING apropos... $r"
+sudo makewhatis
+
+clear
 echo -e "$f TRIMMING... $r"
 echo -e "\n\ntrimming: /"
 doas fstrim /

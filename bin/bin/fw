@@ -56,7 +56,8 @@ fw_minimal() {
 # basic firewall
 fw_basic() {
     IPTABLES="sudo /bin/iptables"
-
+    IP6TABLES="sudo /bin/ip6tables"
+    
     ##################
     # Purge/Flush
     ##################
@@ -78,6 +79,11 @@ fw_basic() {
     $IPTABLES -P INPUT DROP
     $IPTABLES -P FORWARD DROP
     $IPTABLES -P OUTPUT ACCEPT
+
+    # IPv6 Default
+    $IP6TABLES -P INPUT DROP
+    $IP6TABLES -P FORWARD DROP
+    $IP6TABLES -P OUTPUT ACCEPT
 
     # Loopback-Schnittstelle Verkehr erlauben
     $IPTABLES -A INPUT -i lo -j ACCEPT
@@ -146,14 +152,27 @@ fw_normal() {
 
 # usage message
 usage() {
+    echo
+    echo
     echo "ERROR"
     echo "   USAGE: fw [off|basic|minimal|normal|lock]"
     exit 1
 }
 
+# print tables
+show() {
+	clear
+	echo "     iptables   V4"
+	sudo iptables -L -v
+	echo
+	echo "     iptables   V6"
+	sudo ip6tables -L -v
+	echo
+}
+
 ###############   M A I N   ###############
 
-[ "$#" -eq 0 ] && doas iptables -L -v && exit
+[ "$#" -eq 0 ] && show && usage
 [ ! "$#" -eq 1 ] && usage
 
 case "$1" in
@@ -165,7 +184,7 @@ case "$1" in
 *) usage ;;
 esac
 
-sudo iptables -L -v
+show
 
 exit 0
 ###############   E N D   ###############

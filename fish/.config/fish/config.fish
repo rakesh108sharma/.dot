@@ -15,10 +15,10 @@ set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -gx XDG_STATE_HOME "$HOME/.local/state"
 set -gx XDG_CACHE_HOME "$HOME/.cache"
 
-if type -q exa 
-  alias ll "exa -lg --git --icons"
-  alias la "exa -a --git --icons"
-  alias lla "exa -lga --git --icons"
+if type -q exa
+    alias ll "exa -lg --git --icons"
+    alias la "exa -a --git --icons"
+    alias lla "exa -lga --git --icons"
 end
 
 # packet manager
@@ -30,6 +30,16 @@ alias yyi='sudo xbps-install'
 alias yyc='sudo xbps-remove -o'
 alias yycc='sudo xbps-remove -O'
 alias yys='xbps-query -Rs'
+
+# sudo
+alias vsv='sudo vsv'
+
+# networking
+alias ipl='ip -c -br a'
+alias ipr='ip -c r'
+alias nn='netstat -tuna'
+alias nnm='nmap localhost'
+alias nnd='cat /etc/resolv.conf'
 
 # divers
 alias cat='bat --pager less'
@@ -43,6 +53,7 @@ alias ff='lf'
 alias df='df -h | tail +2 | grep -Ev "tmpfs|boot|group" | sort -k 6'
 alias duu='ncdu -e'
 alias duf='duf -only local'
+alias cc='clear'
 
 # Created by `pipx` on 2022-07-21 16:12:30
 set PATH $PATH /home/maya/.local/bin

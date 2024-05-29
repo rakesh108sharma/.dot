@@ -7,6 +7,7 @@ echo "Loading Firewall ..."
 ##################
 
 IPTABLES="sudo /bin/iptables"
+IP6TABLES="sudo /bin/ip6tables"
 
 ##################
 # Purge/Flush 
@@ -30,6 +31,11 @@ $IPTABLES -t mangle -X
 $IPTABLES -P INPUT DROP
 $IPTABLES -P FORWARD DROP
 $IPTABLES -P OUTPUT ACCEPT
+
+# IPv6 Default
+$IP6TABLES -P INPUT DROP
+$IP6TABLES -P FORWARD DROP
+$IP6TABLES -P OUTPUT ACCEPT
 
 # Loopback-Schnittstelle Verkehr erlauben
 $IPTABLES -A INPUT -i lo -j ACCEPT 
