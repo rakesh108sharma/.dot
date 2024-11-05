@@ -9,9 +9,11 @@ style = "Regular"
 history = 10000
 multiplier = 3
 
-[shell]
+[terminal.shell]
 program = "/bin/fish"
 
 [window]
 opacity = 0.8
 startup_mode = "Maximized"
+
+[terminal]

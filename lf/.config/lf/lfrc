@@ -149,6 +149,7 @@ set incsearch
 set ignorecase true
 
 map . set hidden!
+map R $massren $fx
 
 # 'v' must be a link to 'vim-huge' in ~/bin
 map e $hx $f

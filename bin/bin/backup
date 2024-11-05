@@ -8,4 +8,4 @@ rsync -ruLv "$HOME"/vimwiki /media/SSD-120G/backups/
 #rsync -ruLv "$HOME"/.suckless /media/SSD-120G/backups/
 rsync -ruLv "$HOME"/.dot /media/SSD-120G/backups/
 rsync -ruLv "$HOME"/Desktop/Passwörter.kdbx /media/SSD-120G/backups/
-rsync -ruLv "$HOME"/maharaj /media/SSD-120G/backups/
+#rsync -ruLv "$HOME"/maharaj /media/SSD-120G/backups/

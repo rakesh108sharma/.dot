@@ -7,7 +7,8 @@ bind-key RIGHT open
 browser "/bin/links %u"
 macro m set browser "/bin/mpv %u"; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
 macro b set browser "/usr/bin/chromium %u"; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
-macro v set browser "/usr/bin/yt-dlp -f 22 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro V set browser "/usr/bin/yt-dlp -f 22 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
+macro v set browser "/usr/bin/yt-dlp -f 18 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
 macro a set browser "/usr/bin/yt-dlp -f 139 %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
 macro d set browser "/usr/bin/yt-dlp %u" ; open-in-browser ; toggle-article-read "read" ; set browser "/bin/links %u"
 

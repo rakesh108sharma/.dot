@@ -15,34 +15,34 @@ doas xbps-install -Suy
 doas xbps-install -Suy
 doas flatpak update -y
 
-clear
+clear -x
 echo -e "$f REMOVING old kernels... $r"
 sleep 1
 doas vkpurge rm all
 
-clear
+clear -x
 echo -e "$f REMOVING orphans... $r"
 sleep 1
 doas xbps-remove -oy
 
-clear
+clear -x
 echo -e "$f CLEARING cache... $r"
 sleep 1
 doas xbps-remove -O
 
-clear
+clear -x
 echo -e "$f CLEANING trash... $r"
 doas rm -r "$HOME"/.trash/*
 
-clear
+clear -x
 echo -e "$f UPDATING tldr... $r"
 tldr --update
 
-clear
+clear -x
 echo -e "$f UPDATING apropos... $r"
 sudo makewhatis
 
-clear
+clear -x
 echo -e "$f TRIMMING... $r"
 echo -e "\n\ntrimming: /"
 doas fstrim /
@@ -53,7 +53,7 @@ doas fstrim /media/SSD-120G
 echo -e "\ntrimming: /media/SSD-240G"
 doas fstrim /media/SSD-240G
 
-clear
+clear -x
 echo -e "$f RKHUNTER... $r"
 echo -e "\n\nupdating rkhunter"
 doas rkhunter --update

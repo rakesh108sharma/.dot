@@ -40,6 +40,10 @@ alias ipr='ip -c r'
 alias nn='netstat -tuna'
 alias nnm='nmap localhost'
 alias nnd='cat /etc/resolv.conf'
+alias wecke_media='wol 00:18:71:83:50:ac'
+alias wecke_laptop='wol 00:26:2d:7c:3a:d3'
+alias bye_media='ssh media sudo -S systemctl poweroff'
+alias bye_laptop='ssh laptop sudo -S systemctl poweroff'
 
 # divers
 alias cat='bat --pager less'
