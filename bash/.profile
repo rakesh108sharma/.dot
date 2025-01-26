@@ -5,7 +5,7 @@
 # .bashrc  == read by NON login shell for bash
 # .FILENAME(=.dashrc)  == additionally read by NON login shell for dash. BUT must be declared here with ENV
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:$PATH
 export MANPAGER=most
 export PAGER=most
 export EDITOR=micro

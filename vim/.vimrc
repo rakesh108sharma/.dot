@@ -158,6 +158,7 @@ call plug#begin()
 "    Plug 'blindfs/vim-taskwarrior'
     Plug 'reedes/vim-pencil'
     Plug 'tpope/vim-fugitive'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 "colorscheme gruvbox
