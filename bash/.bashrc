@@ -55,6 +55,7 @@ alias doas='doas --'
 #alias resolv='sudo nano /etc/resolv.conf'
 
 ### terminal
+alias st='st -f "Liberation Mono:pixelsize=16:antialias=true:autohint=true" -g 128x36'
 alias ls='exa --color=always --group-directories-first'
 alias ll='exa -lg --color=always --group-directories-first --git --icons'
 alias la='exa -a --color=always --group-directories-first --git --icons'

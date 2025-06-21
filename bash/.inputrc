@@ -5,7 +5,7 @@ $if Bash
 $endif
 
 # pretify
-set colored-stats off
+set colored-stats on
 set colored-completion-prefix On
 set visible-stats On
 
