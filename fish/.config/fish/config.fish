@@ -30,6 +30,7 @@ alias yyh='sudo xbps-query -H'
 alias yyi='sudo xbps-install'
 alias yyc='sudo xbps-remove -ov'
 alias yycc='sudo xbps-remove -O'
+alias yyccc='sudo xbps-remove -OO'
 alias yys='xbps-query -Rs'
 
 # sudo
