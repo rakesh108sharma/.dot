@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 # shellcheck source=/dev/null
-[ -f "$HOME"/.bash_colors ] && . "$HOME"/.bash_colors
+[ -f "$HOME"/.bash_colors ] && . "$HOME/.bash_colors"
 [ -f "$HOME"/.bash_exports ] && . "$HOME"/.bash_exports
 
 umask 027
@@ -323,7 +323,7 @@ bettercd() {
     cd "$1" || exit
     if [ -z "$1" ]; then
         while true; do
-            selection="$(\ls -a | fzf --height 85% --reverse --info hidden --prompt "choice: " \
+            selection="$(find . -maxdepth 1 | fzf --height 85% --reverse --info hidden --prompt "choice: " \
                 --preview ' cd_pre="$(echo $(pwd)/$(echo {}))"
                     echo $cd_pre
                     echo

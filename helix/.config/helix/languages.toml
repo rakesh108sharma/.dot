@@ -1,0 +1,12 @@
+[[language]]
+name = "markdown"
+formatter = { command = 'vmdfmt'}
+
+[[language]]
+name = "bash"
+formatter = { command = 'shfmt', args = [
+	"-i",
+	"4",
+	"-ci",
+	"-bn"
+] }
