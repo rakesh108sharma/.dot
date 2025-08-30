@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # !! CRONTAB !!
 # trims all SSDs periodically

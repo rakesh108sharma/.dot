@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # !! wird durch .xinitrc gestartet !!
 # do all "wanted" things at system start

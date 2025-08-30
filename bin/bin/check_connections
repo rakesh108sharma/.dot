@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # checks the internet conections and tries to find out if the problem is either_
 #     - no connection to localhost

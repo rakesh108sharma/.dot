@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # menu for choosing different config files.
 # file will be opened with vim

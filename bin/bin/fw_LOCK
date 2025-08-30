@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # turn firewall ON and block EVERYTHING
 # except "lo"

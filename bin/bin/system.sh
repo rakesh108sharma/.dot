@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # ! autostart.sh !
 # quick and dirty system check for:

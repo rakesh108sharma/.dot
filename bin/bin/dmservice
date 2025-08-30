@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # control services/daemons with dmenu
 # actions: start/stop/restart/enable/disable SERVICE
@@ -12,40 +12,40 @@ create
 destroy
 
 EDIT
-" | dmenu -i -p "Menu ")
-[ -z "$menu" ] && exit 1
-
+" | dmenu -i -p "Menu ") || exit 0
+#[ -z "$menu" ] && exit 1
+# "|| exit 0" has the same functionality
 
 case "$menu" in
 "create")
-    daemon=$(find /etc/sv/ -maxdepth 1 | dmenu -i -p "create?")
-    if [[ -z $daemon ]]; then
-        exit 1
-    elif [[ $daemon == "/etc/sv/" ]]; then
-        herber "ERROR" "Will not link /etc/sv"
-        exit 2
-    else
-        sudo ln -s "${daemon}" "/var/service/" &>/dev/null
-        herbe "Link CREATED for:" "$daemon"
-    fi
-    ;;
+	daemon=$(find /etc/sv/ -maxdepth 1 | dmenu -i -p "create?")
+	if [[ -z $daemon ]]; then
+		exit 1
+	elif [[ $daemon == "/etc/sv/" ]]; then
+		herber "ERROR" "Will not link /etc/sv"
+		exit 2
+	else
+		sudo ln -s "${daemon}" "/var/service/" &>/dev/null
+		herbe "Link CREATED for:" "$daemon"
+	fi
+	;;
 "destroy")
-    daemon=$(find /var/service/ | dmenu -i -p "destroy?")
-    if [[ -z $daemon ]]; then
-        exit 1
-    elif [[ $daemon == "/var/service/" ]]; then
-        herber "ERROR" "Will not destroy /var/service/"
-        exit 2
-    else
-        sudo rm -rf "${daemon:-ERROR}" &>/dev/null
-        herbe "Link REMOVED:" "${daemon:-ERROR}"
-    fi
-    ;;
+	daemon=$(find /var/service/ | dmenu -i -p "destroy?")
+	if [[ -z $daemon ]]; then
+		exit 1
+	elif [[ $daemon == "/var/service/" ]]; then
+		herber "ERROR" "Will not destroy /var/service/"
+		exit 2
+	else
+		sudo rm -rf "${daemon:-ERROR}" &>/dev/null
+		herbe "Link REMOVED:" "${daemon:-ERROR}"
+	fi
+	;;
 "services")
 	service=$(sudo vsv | dmenu -i -p "service:" | cut -d ' ' -f 3)
 	[ -z "$service" ] && exit 1
 
-action=$(echo -e "\
+	action=$(echo -e "\
 start
 stop
 restart
@@ -55,16 +55,16 @@ disable
 " | dmenu -i -p "${service}: ")
 	[ -z "$action" ] && exit 1
 
-    if sudo vsv "$action" "$service" &>/dev/null; then
-        status=$(sudo sv status "$service")
-        herbe "$status"
-    else
-        herber "FAILED: " "$action $service"
-        exit 3
-    fi
-    ;;
+	if sudo vsv "$action" "$service" &>/dev/null; then
+		status=$(sudo sv status "$service")
+		herbe "$status"
+	else
+		herber "FAILED: " "$action $service"
+		exit 3
+	fi
+	;;
 "EDIT")
-	st -e vim "$0" || exit 1
+	xterm -e vim "$0" || exit 1
 	;;
 esac
 

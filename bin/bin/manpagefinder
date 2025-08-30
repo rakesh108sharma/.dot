@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # search following man pages with dmenu:
 #     man1   general commands
